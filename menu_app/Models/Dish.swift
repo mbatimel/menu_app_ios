@@ -35,7 +35,7 @@ struct Dish: Codable, Identifiable {
         case id
         case name
         case category
-        case favorite
+        case favorite = "choice"  // API использует "choice", маппим на "favorite"
     }
 }
 

@@ -16,8 +16,19 @@ class MenuViewModel: ObservableObject {
     @Published var errorMessage: String?
     @Published var showingCreateDish = false
     @Published var showingSettings = false
+    @Published var currentChef: String? {
+        didSet {
+            if let chef = currentChef {
+                UserDefaults.standard.set(chef, forKey: "currentChef")
+            }
+        }
+    }
     
     private let apiService = APIService.shared
+    
+    init() {
+        currentChef = UserDefaults.standard.string(forKey: "currentChef")
+    }
     
     @MainActor
     func loadAllDishes() async {
@@ -66,6 +77,7 @@ class MenuViewModel: ObservableObject {
             let request = UpdateDishRequest(id: id, text: newName)
             try await apiService.updateDish(request)
             await loadAllDishes()
+            await loadFavoriteDishes()
         } catch {
             errorMessage = error.localizedDescription
         }
@@ -80,6 +92,7 @@ class MenuViewModel: ObservableObject {
             let request = MarkDishesRequest(ids: ids)
             try await apiService.markDishes(request)
             await loadAllDishes()
+            await loadFavoriteDishes()
         } catch {
             errorMessage = error.localizedDescription
         }
@@ -94,6 +107,7 @@ class MenuViewModel: ObservableObject {
             let request = DeleteDishRequest(id: id)
             try await apiService.deleteDish(request)
             await loadAllDishes()
+            await loadFavoriteDishes()
         } catch {
             errorMessage = error.localizedDescription
         }
@@ -111,6 +125,21 @@ class MenuViewModel: ObservableObject {
             errorMessage = error.localizedDescription
         }
         isLoading = false
+    }
+    
+    @MainActor
+    func toggleFavorite(dishId: Int) async {
+        // Находим блюдо, чтобы узнать текущее состояние избранного
+        let dish = dishes.first { $0.id == dishId } ?? favoriteDishes.first { $0.id == dishId }
+        let isCurrentlyFavorite = dish?.favorite ?? false
+        
+        do {
+            try await apiService.toggleFavorite(dishId: dishId, isFavorite: isCurrentlyFavorite)
+            await loadAllDishes()
+            await loadFavoriteDishes()
+        } catch {
+            errorMessage = error.localizedDescription
+        }
     }
 }
 

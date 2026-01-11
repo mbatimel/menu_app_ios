@@ -9,8 +9,13 @@ import SwiftUI
 
 struct SettingsView: View {
     @Environment(\.dismiss) var dismiss
+    @ObservedObject var viewModel: MenuViewModel
     @State private var secretId: String = UserDefaults.standard.string(forKey: "secretId") ?? "YOUR_SECRET_UUID_HERE"
     @State private var chefName = ""
+    
+    init(viewModel: MenuViewModel) {
+        self.viewModel = viewModel
+    }
     
     var body: some View {
         NavigationView {
@@ -53,6 +58,8 @@ struct SettingsView: View {
         let request = CreateChefRequest(name: chefName)
         do {
             try await APIService.shared.createChef(request)
+            UserDefaults.standard.set(chefName, forKey: "currentChef")
+            viewModel.currentChef = chefName
             chefName = ""
         } catch {
             print("Ошибка создания шефа: \(error)")

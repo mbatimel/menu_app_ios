@@ -1,3 +1,9 @@
+//
+//  MenuDetail.swift
+//  menu_app_ios
+//
+//  Created on 2024
+//
 import SwiftUI
 
 struct MenuDetailView: View {

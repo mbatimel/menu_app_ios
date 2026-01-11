@@ -43,7 +43,9 @@ struct EditDishView: View {
                     Button("Сохранить") {
                         Task {
                             await viewModel.updateDish(id: dish.id, newName: dishName)
-                            dismiss()
+                            if viewModel.errorMessage == nil {
+                                dismiss()
+                            }
                         }
                     }
                     .disabled(dishName.isEmpty || viewModel.isLoading)

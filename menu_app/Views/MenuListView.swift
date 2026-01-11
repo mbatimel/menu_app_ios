@@ -16,6 +16,19 @@ struct MenuListView: View {
     var body: some View {
         NavigationView {
             VStack {
+                // Отображение текущего шеф-повара
+                if let chef = viewModel.currentChef {
+                    HStack {
+                        Image(systemName: "person.crop.circle.fill")
+                            .foregroundColor(.blue)
+                        Text("Шеф-повар: \(chef)")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                    }
+                    .padding(.horizontal)
+                    .padding(.vertical, 8)
+                }
+                
                 Picker("", selection: $selectedTab) {
                     Text("Все блюда").tag(0)
                     Text("Избранное").tag(1)
@@ -38,6 +51,11 @@ struct MenuListView: View {
                                         selectedDishes.remove(dish.id)
                                     } else {
                                         selectedDishes.insert(dish.id)
+                                    }
+                                },
+                                onToggleFavorite: {
+                                    Task {
+                                        await viewModel.toggleFavorite(dishId: dish.id)
                                     }
                                 },
                                 onEdit: {
@@ -97,10 +115,13 @@ struct MenuListView: View {
                 CreateDishView(viewModel: viewModel)
             }
             .sheet(isPresented: $viewModel.showingSettings) {
-                SettingsView()
+                SettingsView(viewModel: viewModel)
             }
             .sheet(item: $editingDish) { dish in
                 EditDishView(viewModel: viewModel, dish: dish)
+                    .onDisappear {
+                        editingDish = nil
+                    }
             }
             .task {
                 await viewModel.loadAllDishes()
@@ -120,6 +141,7 @@ struct DishRowView: View {
     let dish: Dish
     let isSelected: Bool
     let onToggleSelection: () -> Void
+    let onToggleFavorite: () -> Void
     let onEdit: () -> Void
     let onDelete: () -> Void
     
@@ -139,16 +161,16 @@ struct DishRowView: View {
                     Text(dish.category.displayName)
                         .font(.caption)
                         .foregroundColor(.secondary)
-                    
-                    if dish.favorite {
-                        Image(systemName: "star.fill")
-                            .foregroundColor(.yellow)
-                            .font(.caption)
-                    }
                 }
             }
             
             Spacer()
+            
+            Button(action: onToggleFavorite) {
+                Image(systemName: dish.favorite ? "star.fill" : "star")
+                    .foregroundColor(dish.favorite ? .yellow : .gray)
+            }
+            .buttonStyle(.plain)
             
             Menu {
                 Button("Редактировать", action: onEdit)
