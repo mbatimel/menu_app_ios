@@ -1,21 +1,17 @@
-//
-//  MenuViewModel.swift
-//  menu_app_ios
-//
-//  Created on 2024
-//
-
 import Foundation
 import SwiftUI
 import Combine
 
+@MainActor
 class MenuViewModel: ObservableObject {
+
+    // MARK: - State
     @Published var dishes: [Dish] = []
-    @Published var favoriteDishes: [Dish] = []
     @Published var isLoading = false
     @Published var errorMessage: String?
     @Published var showingCreateDish = false
     @Published var showingSettings = false
+
     @Published var currentChef: String? {
         didSet {
             if let chef = currentChef {
@@ -23,14 +19,30 @@ class MenuViewModel: ObservableObject {
             }
         }
     }
-    
+
     private let apiService = APIService.shared
-    
+
+
+    // MARK: - Computed
+
+    /// Группировка блюд как в меню
+    var groupedDishes: [DishCategory: [Dish]] {
+        Dictionary(grouping: dishes, by: { $0.category })
+    }
+
+    /// Избранные блюда (НЕ храним отдельно)
+    var favoriteDishes: [Dish] {
+        dishes.filter { $0.favorite }
+    }
+
+    // MARK: - Init
     init() {
         currentChef = UserDefaults.standard.string(forKey: "currentChef")
     }
-    
-    @MainActor
+
+
+    // MARK: - Load
+
     func loadAllDishes() async {
         isLoading = true
         errorMessage = nil
@@ -41,105 +53,103 @@ class MenuViewModel: ObservableObject {
         }
         isLoading = false
     }
-    
-    @MainActor
-    func loadFavoriteDishes() async {
-        isLoading = true
-        errorMessage = nil
-        do {
-            favoriteDishes = try await apiService.getFavoriteDishes()
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-        isLoading = false
-    }
-    
-    @MainActor
+
+    // MARK: - Create
+
     func createDish(name: String, category: DishCategory) async {
         isLoading = true
         errorMessage = nil
+
         do {
-            let request = CreateDishRequest(dish: name, category: category)
-            try await apiService.createDish(request)
+            try await apiService.createDish(
+                CreateDishRequest(dish: name, category: category)
+            )
             await loadAllDishes()
             showingCreateDish = false
         } catch {
             errorMessage = error.localizedDescription
         }
+
         isLoading = false
     }
-    
-    @MainActor
+
+    // MARK: - Update (МГНОВЕННО)
+
     func updateDish(id: Int, newName: String) async {
         isLoading = true
         errorMessage = nil
+
         do {
-            let request = UpdateDishRequest(id: id, text: newName)
-            try await apiService.updateDish(request)
-            await loadAllDishes()
-            await loadFavoriteDishes()
+            try await apiService.updateDish(
+                UpdateDishRequest(id: id, text: newName)
+            )
+
+            if let index = dishes.firstIndex(where: { $0.id == id }) {
+                dishes[index].name = newName
+            }
+
         } catch {
             errorMessage = error.localizedDescription
         }
+
         isLoading = false
     }
-    
-    @MainActor
-    func markDishes(ids: [Int]) async {
-        isLoading = true
-        errorMessage = nil
+
+    // MARK: - Favorite (МГНОВЕННО)
+
+    func toggleFavorite(dishId: Int) async {
+        guard let index = dishes.firstIndex(where: { $0.id == dishId }) else { return }
+
+        let newValue = !dishes[index].favorite
+        dishes[index].favorite = newValue   // UI обновляется сразу
+
         do {
-            let request = MarkDishesRequest(ids: ids)
-            try await apiService.markDishes(request)
-            await loadAllDishes()
-            await loadFavoriteDishes()
+            if newValue {
+                try await apiService.markDishes(
+                    MarkDishesRequest(ids: [dishId])
+                )
+            } else {
+                try await apiService.unmarkDishes(
+                    MarkDishesRequest(ids: [dishId])
+                )
+            }
         } catch {
+            dishes[index].favorite.toggle() // rollback
             errorMessage = error.localizedDescription
         }
-        isLoading = false
     }
-    
-    @MainActor
+
+    // MARK: - Delete
+
     func deleteDish(id: Int) async {
         isLoading = true
         errorMessage = nil
+
         do {
-            let request = DeleteDishRequest(id: id)
-            try await apiService.deleteDish(request)
-            await loadAllDishes()
-            await loadFavoriteDishes()
+            try await apiService.deleteDish(
+                DeleteDishRequest(id: id)
+            )
+            dishes.removeAll { $0.id == id }
         } catch {
             errorMessage = error.localizedDescription
         }
+
         isLoading = false
     }
-    
-    @MainActor
+
     func deleteAllDishes() async {
         isLoading = true
         errorMessage = nil
+
         do {
             try await apiService.deleteAllDishes()
-            await loadAllDishes()
+            dishes = []
         } catch {
             errorMessage = error.localizedDescription
         }
+
         isLoading = false
     }
     
-    @MainActor
-    func toggleFavorite(dishId: Int) async {
-        // Находим блюдо, чтобы узнать текущее состояние избранного
-        let dish = dishes.first { $0.id == dishId } ?? favoriteDishes.first { $0.id == dishId }
-        let isCurrentlyFavorite = dish?.favorite ?? false
-        
-        do {
-            try await apiService.toggleFavorite(dishId: dishId, isFavorite: isCurrentlyFavorite)
-            await loadAllDishes()
-            await loadFavoriteDishes()
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-    }
-}
 
+}

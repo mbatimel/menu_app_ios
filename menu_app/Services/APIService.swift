@@ -7,7 +7,6 @@
 
 import Foundation
 import OSLog
-
 class APIService {
     static let shared = APIService()
     private static let logger = Logger(subsystem: "menu_app_ios", category: "APIService")
@@ -374,4 +373,3 @@ enum APIError: Error {
         }
     }
 }
-

@@ -1,48 +1,42 @@
-//
-//  EditDishView.swift
-//  menu_app_ios
-//
-//  Created on 2024
-//
-
 import SwiftUI
 
 struct EditDishView: View {
+
     @ObservedObject var viewModel: MenuViewModel
     @Environment(\.dismiss) var dismiss
-    
-    let dish: Dish
-    @State private var dishName: String
-    
-    init(viewModel: MenuViewModel, dish: Dish) {
-        self.viewModel = viewModel
-        self.dish = dish
-        _dishName = State(initialValue: dish.name)
-    }
-    
+
+    let dishId: Int
+    @State private var dishName: String = ""
+
     var body: some View {
         NavigationView {
             Form {
                 Section("Редактировать блюдо") {
                     TextField("Название блюда", text: $dishName)
-                    
-                    Text("Категория: \(dish.category.displayName)")
-                        .foregroundColor(.secondary)
+
+                    if let dish = viewModel.dishes.first(where: { $0.id == dishId }) {
+                        Text("Категория: \(dish.category.displayName)")
+                            .foregroundColor(.secondary)
+                    }
                 }
             }
             .navigationTitle("Редактировать")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
+
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("Отмена") {
                         dismiss()
                     }
                 }
-                
+
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Сохранить") {
                         Task {
-                            await viewModel.updateDish(id: dish.id, newName: dishName)
+                            await viewModel.updateDish(
+                                id: dishId,
+                                newName: dishName
+                            )
                             if viewModel.errorMessage == nil {
                                 dismiss()
                             }
@@ -51,7 +45,11 @@ struct EditDishView: View {
                     .disabled(dishName.isEmpty || viewModel.isLoading)
                 }
             }
+            .onAppear {
+                if let dish = viewModel.dishes.first(where: { $0.id == dishId }) {
+                    dishName = dish.name
+                }
+            }
         }
     }
 }
-
