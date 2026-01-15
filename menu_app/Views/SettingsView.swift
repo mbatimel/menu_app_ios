@@ -18,7 +18,7 @@ struct SettingsView: View {
     }
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             Form {
                 Section("API Настройки") {
                     TextField("Secret ID", text: $secretId)

@@ -8,7 +8,7 @@ struct MenuListView: View {
     @State private var editingDish: Dish?
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
 
                 // Шеф-повар

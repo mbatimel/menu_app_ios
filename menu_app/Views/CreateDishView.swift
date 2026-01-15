@@ -15,7 +15,7 @@ struct CreateDishView: View {
     @State private var selectedCategory: DishCategory = .snacks
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             Form {
                 Section("Информация о блюде") {
                     TextField("Название блюда", text: $dishName)

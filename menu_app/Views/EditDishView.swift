@@ -9,7 +9,7 @@ struct EditDishView: View {
     @State private var dishName: String = ""
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             Form {
                 Section("Редактировать блюдо") {
                     TextField("Название блюда", text: $dishName)
