@@ -27,20 +27,26 @@ struct SettingsView: View {
                     
                     Button("Сохранить Secret ID") {
                         UserDefaults.standard.set(secretId, forKey: "secretId")
-                        APIService.shared.setSecretId(secretId)
+                            APIService.shared.setSecretId(secretId)
+
+                            let newRole = roleFromSecret(secretId)
+                            viewModel.role = newRole
                     }
                 }
                 
-                Section("Шеф-повар") {
-                    TextField("Имя шефа", text: $chefName)
-                    
-                    Button("Создать шефа") {
-                        Task {
-                            await createChef()
+                if viewModel.role != .user {
+                    Section("Шеф-повар") {
+                        TextField("Имя шефа", text: $chefName)
+
+                        Button("Создать шефа") {
+                            Task {
+                                await createChef()
+                            }
                         }
+                        .disabled(chefName.isEmpty)
                     }
-                    .disabled(chefName.isEmpty)
                 }
+
             }
             .navigationTitle("Настройки")
             .navigationBarTitleDisplayMode(.inline)

@@ -19,6 +19,12 @@ class MenuViewModel: ObservableObject {
             }
         }
     }
+    
+    @Published var role: UserRole = .user {
+        didSet {
+            UserDefaults.standard.set(role.rawValue, forKey: "userRole")
+        }
+    }
 
     private let apiService = APIService.shared
 
@@ -37,7 +43,11 @@ class MenuViewModel: ObservableObject {
 
     // MARK: - Init
     init() {
-        currentChef = UserDefaults.standard.string(forKey: "currentChef")
+        if let saved = UserDefaults.standard.string(forKey: "userRole"),
+              let role = UserRole(rawValue: saved) {
+               self.role = role
+           }
+           currentChef = UserDefaults.standard.string(forKey: "currentChef")
     }
 
 
@@ -57,8 +67,10 @@ class MenuViewModel: ObservableObject {
     // MARK: - Create
 
     func createDish(name: String, category: DishCategory) async {
-        isLoading = true
-        errorMessage = nil
+        guard role.permissions.canCreateDish else { return }
+
+           isLoading = true
+           errorMessage = nil
 
         do {
             try await apiService.createDish(
@@ -76,6 +88,7 @@ class MenuViewModel: ObservableObject {
     // MARK: - Update (МГНОВЕННО)
 
     func updateDish(id: Int, newName: String) async {
+        guard role.permissions.canEditDish else { return }
         isLoading = true
         errorMessage = nil
 
@@ -98,6 +111,7 @@ class MenuViewModel: ObservableObject {
     // MARK: - Favorite (МГНОВЕННО)
 
     func toggleFavorite(dishId: Int) async {
+        guard role.permissions.canDeleteDish else { return }
         guard let index = dishes.firstIndex(where: { $0.id == dishId }) else { return }
 
         let newValue = !dishes[index].favorite
@@ -122,6 +136,7 @@ class MenuViewModel: ObservableObject {
     // MARK: - Delete
 
     func deleteDish(id: Int) async {
+        guard role.permissions.canDeleteDish else { return }
         isLoading = true
         errorMessage = nil
 
@@ -138,6 +153,7 @@ class MenuViewModel: ObservableObject {
     }
 
     func deleteAllDishes() async {
+        guard role.permissions.canDeleteDish else { return }
         isLoading = true
         errorMessage = nil
 

@@ -39,7 +39,10 @@ struct MenuListView: View {
                         groupedList(
                             selectedTab == 0
                             ? viewModel.groupedDishes
-                            : Dictionary(grouping: viewModel.favoriteDishes, by: { $0.category })
+                            : Dictionary(
+                                grouping: viewModel.favoriteDishes,
+                                by: { $0.category }
+                              )
                         )
                     }
                 }
@@ -61,18 +64,22 @@ struct MenuListView: View {
 
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
 
-                    Button("Добавить") {
-                        viewModel.showingCreateDish = true
+                    if viewModel.role.permissions.canCreateDish {
+                        Button("Добавить") {
+                            viewModel.showingCreateDish = true
+                        }
                     }
 
-                    Menu {
-                        Button("Удалить все", role: .destructive) {
-                            Task {
-                                await viewModel.deleteAllDishes()
+                    if viewModel.role.permissions.canDeleteDish {
+                        Menu {
+                            Button("Удалить все", role: .destructive) {
+                                Task {
+                                    await viewModel.deleteAllDishes()
+                                }
                             }
+                        } label: {
+                            Image(systemName: "ellipsis.circle")
                         }
-                    } label: {
-                        Image(systemName: "ellipsis.circle")
                     }
                 }
             }
@@ -99,6 +106,9 @@ struct MenuListView: View {
             DishRowView(
                 dish: dish,
                 isSelected: selectedDishes.contains(dish.id),
+                canToggleFavorite: viewModel.role.permissions.canToggleFavorite,
+                canEdit: viewModel.role.permissions.canEditDish,
+                canDelete: viewModel.role.permissions.canDeleteDish,
                 onToggleSelection: {
                     toggleSelection(dish.id)
                 },
@@ -115,7 +125,7 @@ struct MenuListView: View {
                         await viewModel.deleteDish(id: dish.id)
                     }
                 },
-                index: index + 1   // нумерация как в меню
+                index: index + 1
             )
         }
     }
@@ -127,9 +137,9 @@ struct MenuListView: View {
             selectedDishes.insert(id)
         }
     }
-    
+
     @ViewBuilder
-    func groupedList(_ groups: [DishCategory: [Dish]]) -> some View {
+    private func groupedList(_ groups: [DishCategory: [Dish]]) -> some View {
         ForEach(DishCategory.allCases, id: \.self) { category in
             if let dishes = groups[category], !dishes.isEmpty {
                 Section(header: Text(category.displayName)) {
@@ -138,5 +148,4 @@ struct MenuListView: View {
             }
         }
     }
-
 }
