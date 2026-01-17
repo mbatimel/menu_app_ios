@@ -11,7 +11,7 @@ class APIService {
     static let shared = APIService()
     private static let logger = Logger(subsystem: "menu_app_ios", category: "APIService")
     
-    private let baseURL = "http://localhost:9000/menu/api"
+    private let baseURL = "http://45.129.128.131:80/menu/api"
     private var secretId: String {
         didSet {
             UserDefaults.standard.set(secretId, forKey: "secretId")
