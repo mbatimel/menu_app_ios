@@ -2,16 +2,16 @@ import SwiftUI
 
 @main
 struct MenuApp: App {
+	private let dailyCleanupService = DailyCleanupService()
+
     init() {
-        // Настраиваем ежедневное удаление при запуске приложения
-        DailyCleanupService.shared.scheduleDailyCleanup()
-        // Проверяем нужно ли выполнить очистку сейчас
+		dailyCleanupService.scheduleDailyCleanup()
         checkAndPerformCleanupIfNeeded()
     }
     
     var body: some Scene {
         WindowGroup {
-            MenuListView()
+            ContentView()
         }
     }
     
@@ -29,7 +29,7 @@ struct MenuApp: App {
                 let hour = calendar.component(.hour, from: now)
                 if hour >= 0 && hour < 1 { // Между 00:00 и 01:00 UTC
                     Task {
-                        await DailyCleanupService.shared.performCleanup()
+                        await dailyCleanupService.performCleanup()
                         UserDefaults.standard.set(now, forKey: "lastCleanupDate")
                     }
                 }

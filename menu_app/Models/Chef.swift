@@ -15,7 +15,3 @@ struct Chef: Codable, Identifiable {
         case name
     }
 }
-
-struct CreateChefRequest: Codable {
-    let name: String
-}

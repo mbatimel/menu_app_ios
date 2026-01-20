@@ -7,29 +7,31 @@
 
 import Foundation
 import UserNotifications
-import OSLog
 
 class DailyCleanupService {
-    static let shared = DailyCleanupService()
-    private static let logger = Logger(subsystem: "menu_app_ios", category: "DailyCleanupService")
-    
-    private init() {}
-    
+	let chefService: ChefServiceProtocol
+	let dishService: DishesServiceProtocol
+	
+	init(
+		chefService: ChefServiceProtocol = ChefService(),
+		dishService: DishesServiceProtocol = DishesService()
+	) {
+		self.chefService = chefService
+		self.dishService = dishService
+	}
+
     func scheduleDailyCleanup() {
         let center = UNUserNotificationCenter.current()
         
         // Запрашиваем разрешение на уведомления
         center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
             if let error = error {
-                Self.logger.error("Error requesting notification authorization: \(error.localizedDescription)")
                 return
             }
             
             if granted {
-                Self.logger.info("Notification authorization granted")
                 self.setupDailyNotification()
             } else {
-                Self.logger.warning("Notification authorization denied")
             }
         }
     }
@@ -57,11 +59,6 @@ class DailyCleanupService {
         let request = UNNotificationRequest(identifier: "dailyCleanup", content: content, trigger: trigger)
         
         center.add(request) { error in
-            if let error = error {
-                Self.logger.error("Error scheduling notification: \(error.localizedDescription)")
-            } else {
-                Self.logger.info("Daily cleanup notification scheduled")
-            }
         }
         
         // Регистрируем обработчик уведомлений
@@ -69,20 +66,16 @@ class DailyCleanupService {
     }
     
     func performCleanup() async {
-        Self.logger.info("Performing daily cleanup")
-        do {
-            try await APIService.shared.deleteChefAndDishes()
-            // Очищаем сохраненного шеф-повара
-            UserDefaults.standard.removeObject(forKey: "currentChef")
-            Self.logger.info("Daily cleanup completed successfully")
-        } catch {
-            Self.logger.error("Error during daily cleanup: \(error.localizedDescription)")
-        }
+		async let _ = chefService.delete()
+		async let _ = dishService.deleteAll()
+
+		UserDefaults.standard.removeObject(forKey: "currentChef")
     }
 }
 
 class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
     static let shared = NotificationDelegate()
+	let dailyCleanupService = DailyCleanupService()
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         // Показываем уведомление даже когда приложение открыто
@@ -93,7 +86,7 @@ class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
         if response.notification.request.identifier == "dailyCleanup" {
             // Выполняем очистку при нажатии на уведомление
             Task {
-                await DailyCleanupService.shared.performCleanup()
+                await dailyCleanupService.performCleanup()
             }
         }
         completionHandler()
