@@ -1,25 +1,15 @@
-//
-//  CreateDishView.swift
-//  menu_app_ios
-//
-//  Created on 2024
-//
-
 import SwiftUI
 
 struct CreateDishView: View {
-	@ObservedObject var viewModel: MenuViewModel
+	@State private var viewModel = CreateDishViewModel()
 	@Environment(\.dismiss) var dismiss
-	
-	@State private var dishName = ""
-	@State private var selectedCategory: DishCategory = .snacks
 	
 	var body: some View {
 		Form {
 			Section("Информация о блюде") {
-				TextField("Название блюда", text: $dishName)
-				
-				Picker("Категория", selection: $selectedCategory) {
+				TextField("Название блюда", text: $viewModel.name)
+
+				Picker("Категория", selection: $viewModel.selectedCategory) {
 					ForEach(DishCategory.allCases, id: \.self) { category in
 						Text(category.displayName).tag(category)
 					}
@@ -37,16 +27,14 @@ struct CreateDishView: View {
 			
 			ToolbarItem(placement: .navigationBarTrailing) {
 				Button("Создать") {
-					Task {
-						await viewModel.createDish(
-							name: dishName,
-							category: selectedCategory
-						)
-					}
+					viewModel.createDish()
 				}
-				.disabled(dishName.isEmpty || viewModel.isLoading)
+				.disabled(viewModel.name.isEmpty)
 			}
 		}
 	}
 }
 
+#Preview {
+	CreateDishView()
+}

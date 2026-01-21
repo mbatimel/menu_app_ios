@@ -1,10 +1,3 @@
-//
-//  Requester.swift
-//  Box
-//
-//  Created by Шарап Бамматов on 14.06.2024.
-//
-
 import Foundation
 
 class Requester {

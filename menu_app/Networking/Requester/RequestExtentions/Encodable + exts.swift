@@ -1,10 +1,3 @@
-//
-//  Encodable + exts.swift
-//  Box
-//
-//  Created by Шарап Бамматов on 02.07.2024.
-//
-
 import Foundation
 
 extension Encodable {

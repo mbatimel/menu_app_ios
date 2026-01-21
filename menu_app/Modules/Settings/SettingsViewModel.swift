@@ -1,17 +1,9 @@
-//
-//  SettingsViewModel.swift
-//  menu_app
-//
-//  Created by Захар Литвинчук on 21.01.2026.
-//
-
 import Foundation
-import Swinject
-import Combine
 
-final class SettingsViewModel: ObservableObject {
-	@Published var chefName: String = ""
-	@Published var secretId: String = UserDefaults.standard.string(forKey: "secretId") ?? "YOUR_SECRET_UUID_HERE"
+@Observable
+final class SettingsViewModel {
+	var chefName: String = ""
+	var secretId: String = UserDefaults.standard.string(forKey: "secretId") ?? "YOUR_SECRET_UUID_HERE"
 	
 	let chefService: ChefServiceProtocol
 	

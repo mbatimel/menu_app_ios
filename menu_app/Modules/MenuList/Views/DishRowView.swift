@@ -1,10 +1,3 @@
-//
-//  DishRowView.swift
-//  menu_app
-//
-//  Created by M-batimel@ on 13.01.2026.
-//
-
 import SwiftUI
 
 struct DishRowView: View {
@@ -24,25 +17,10 @@ struct DishRowView: View {
 
     var body: some View {
         HStack(spacing: 12) {
-
-            // Номер блюда (как в меню)
-            Text("\(index).")
-                .foregroundColor(.secondary)
-                .frame(width: 24, alignment: .leading)
-
-            // Выбор (чекбокс)
-            Button(action: onToggleSelection) {
-                Image(systemName: isSelected
-                      ? "checkmark.circle.fill"
-                      : "circle")
-                    .foregroundColor(isSelected ? .blue : .gray)
-            }
-            .buttonStyle(.plain)
-
-            // Название + категория
             VStack(alignment: .leading, spacing: 4) {
                 Text(dish.name)
                     .font(.body)
+					.foregroundStyle(.primary)
 
                 Text(dish.category.displayName)
                     .font(.caption)
@@ -54,8 +32,8 @@ struct DishRowView: View {
             // Избранное ⭐
             if canToggleFavorite {
                 Button(action: onToggleFavorite) {
-                    Image(systemName: dish.favorite ? "star.fill" : "star")
-                        .foregroundColor(dish.favorite ? .yellow : .gray)
+                    Image(systemName: dish.favourite ? "star.fill" : "star")
+                        .foregroundColor(dish.favourite ? .yellow : .gray)
                 }
                 .buttonStyle(.plain)
             }
@@ -77,4 +55,25 @@ struct DishRowView: View {
         }
         .padding(.vertical, 6)
     }
+}
+
+#Preview {
+	DishRowView(
+		dish: .init(
+			id: 1,
+			name: "Test",
+			category: .hotDishes,
+			favourite: true
+		),
+		isSelected: false,
+		canToggleFavorite: true,
+		canEdit: true,
+		canDelete: true,
+		onToggleSelection: {
+		},
+		onToggleFavorite: {},
+		onEdit: {},
+		onDelete: {},
+		index: 1)
+	.padding(.horizontal, 16)
 }

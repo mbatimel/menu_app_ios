@@ -2,29 +2,18 @@ import SwiftUI
 
 struct MenuListView: View {
 	
-	@StateObject private var viewModel = MenuViewModel()
+	@State var viewModel: MenuViewModel
 	
 	var body: some View {
 		VStack {
-			
-			// Шеф-повар
-			if let chef = viewModel.currentChef {
-				HStack {
-					Image(systemName: "person.crop.circle.fill")
-						.foregroundColor(.blue)
-					Text("Шеф-повар: \(chef)")
-						.font(.subheadline)
-						.foregroundColor(.secondary)
-				}
-				.padding(.vertical, 6)
-			}
-			
+			chefView
+
 			Picker("", selection: $viewModel.selectedTab) {
 				Text("Все блюда").tag(0)
 				Text("Избранное").tag(1)
 			}
 			.pickerStyle(.segmented)
-			.padding()
+			.padding(.horizontal)
 			
 			if viewModel.isLoading {
 				Spacer()
@@ -41,6 +30,8 @@ struct MenuListView: View {
 						)
 					)
 				}
+				.listStyle(.insetGrouped)
+				.scrollContentBackground(.hidden)
 			}
 			
 			if let error = viewModel.errorMessage {
@@ -51,10 +42,12 @@ struct MenuListView: View {
 		}
 		.navigationTitle("Меню")
 		.toolbar {
-			
 			ToolbarItem(placement: .navigationBarLeading) {
-				Button("Настройки") {
+				Button {
 					viewModel.showingSettings = true
+				} label: {
+					Image(systemName: "gear")
+						.foregroundStyle(.blue)
 				}
 			}
 			
@@ -81,17 +74,17 @@ struct MenuListView: View {
 		}
 		.sheet(isPresented: $viewModel.showingCreateDish) {
 			NavigationStack {
-				CreateDishView(viewModel: viewModel)
+				CreateDishView()
 			}
 		}
 		.sheet(isPresented: $viewModel.showingSettings) {
 			NavigationStack {
-				SettingsView(menuViewModel: viewModel)
+				SettingsView()
 			}
 		}
-		.sheet(item: $viewModel.editingDish) { dish in
+		.sheet(item: $viewModel.editingDish) { selectedDish in
 			NavigationStack {
-				EditDishView(viewModel: viewModel, dishId: dish.id)
+				EditDishView(viewModel: EditDishViewModel(selectedDish: selectedDish))
 			}
 		}
 		.task {
@@ -99,7 +92,23 @@ struct MenuListView: View {
 		}
 	}
 	
+	@ViewBuilder
+	private var chefView: some View {
+		if let chef = viewModel.currentChef {
+			HStack {
+				Image(systemName: "person.crop.circle.fill")
+					.foregroundColor(.blue)
+				Text("Шеф-повар: \(chef)")
+					.font(.subheadline)
+					.foregroundColor(.secondary)
+			}
+			.padding(.vertical, 6)
+		}
+	}
+	
 	// MARK: - Dish list builder
+	
+	
 	
 	@ViewBuilder
 	private func dishList(_ dishes: [Dish]) -> some View {
@@ -148,5 +157,11 @@ struct MenuListView: View {
 				}
 			}
 		}
+	}
+}
+
+#Preview {
+	NavigationStack {
+		MenuListView(viewModel: .init())
 	}
 }

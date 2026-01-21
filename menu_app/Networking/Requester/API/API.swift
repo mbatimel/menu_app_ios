@@ -4,9 +4,6 @@ struct API {
 
 	static let baseURL = "http://45.129.128.131:80/menu/api"
 
-	#warning("TODO: implement later")
-	static let secretId = ""
-
 	enum Dishes {
 		static let list = "/all"
 		static let favoriteList = "/favorite"

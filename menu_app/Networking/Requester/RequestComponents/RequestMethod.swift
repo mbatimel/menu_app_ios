@@ -1,10 +1,3 @@
-//
-//  RequestMethod.swift
-//  Box
-//
-//  Created by Шарап Бамматов on 15.06.2024.
-//
-
 import Foundation
 
 enum RequestMethod: String {

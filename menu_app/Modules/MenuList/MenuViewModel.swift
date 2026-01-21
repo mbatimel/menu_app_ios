@@ -1,21 +1,24 @@
 import Foundation
 import SwiftUI
-import Combine
 
 @MainActor
-class MenuViewModel: ObservableObject {
+@Observable
+class MenuViewModel {
 
     // MARK: - State
-    @Published var dishes: [Dish] = []
-    @Published var isLoading = false
-    @Published var errorMessage: String?
-    @Published var showingCreateDish = false
-    @Published var showingSettings = false
-	@Published var selectedTab = 0
-	@Published var selectedDishes: Set<Int> = []
-	@Published var editingDish: Dish?
+	var dishes: [Dish] = []
 
-    @Published var currentChef: String? {
+	var selectedDishes: Set<Int> = []
+	var editingDish: Dish?
+
+	var selectedTab = 0
+	var showingCreateDish = false
+	var showingSettings = false
+	var isLoading = false
+	var errorMessage: String?
+
+
+	var currentChef: String? {
         didSet {
             if let chef = currentChef {
                 UserDefaults.standard.set(chef, forKey: "currentChef")
@@ -23,7 +26,7 @@ class MenuViewModel: ObservableObject {
         }
     }
     
-    @Published var role: UserRole = .user {
+	var role: UserRole = .user {
         didSet {
             UserDefaults.standard.set(role.rawValue, forKey: "userRole")
         }
@@ -40,7 +43,7 @@ class MenuViewModel: ObservableObject {
 
     /// Избранные блюда (НЕ храним отдельно)
     var favoriteDishes: [Dish] {
-        dishes.filter { $0.favorite }
+        dishes.filter { $0.favourite }
     }
 
     // MARK: - Init
@@ -72,27 +75,6 @@ class MenuViewModel: ObservableObject {
 		}
 	}
 
-
-    func createDish(name: String, category: DishCategory) async {
-        guard role.permissions.canCreateDish else { return }
-
-           isLoading = true
-           errorMessage = nil
-
-		let request = CreateDishRequest(dish: name, categoty: category.rawValue)
-		let result = await dishService.createDish(request: request)
-		switch result {
-		case .success:
-			showingCreateDish = false
-		case .networkError(let error):
-			errorMessage = error
-			Logger.log(level: .warning, "Error while create dish \(error)")
-		}
-
-		await loadAllDishes()
-        isLoading = false
-    }
-
     // MARK: - Update (МГНОВЕННО)
 
     func updateDish(id: Int, newName: String) async {
@@ -123,8 +105,8 @@ class MenuViewModel: ObservableObject {
 			where: { $0.id == dishId
 			}) else { return }
 
-        let newValue = !dishes[index].favorite
-        dishes[index].favorite = newValue   // UI обновляется сразу
+        let newValue = !dishes[index].favourite
+        dishes[index].favourite = newValue   // UI обновляется сразу
 
 		let result = newValue ? await dishService.mark(ids: [dishId]) : await dishService.unmark(ids: [dishId])
 		
@@ -132,7 +114,7 @@ class MenuViewModel: ObservableObject {
 		case .success:
 			break
 		case .networkError(let error):
-			dishes[index].favorite.toggle()
+			dishes[index].favourite.toggle()
 			errorMessage = error
 		}
     }

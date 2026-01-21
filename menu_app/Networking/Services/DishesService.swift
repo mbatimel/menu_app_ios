@@ -1,10 +1,3 @@
-//
-//  DishesService.swift
-//  menu_app
-//
-//  Created by Захар Литвинчук on 20.01.2026.
-//
-
 import Foundation
 
 protocol DishesServiceProtocol: AnyObject {
