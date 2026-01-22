@@ -107,8 +107,7 @@ class MenuViewModel {
 
         let newValue = !dishes[index].favourite
         dishes[index].favourite = newValue   // UI обновляется сразу
-
-		let result = newValue ? await dishService.mark(ids: [dishId]) : await dishService.unmark(ids: [dishId])
+        let result = newValue ? await dishService.mark(request:MarkDishRequest(ids:[dishId])) : await dishService.unmark(request:UnMarkDishRequest(ids:[dishId]))
 		
 		switch result {
 		case .success:

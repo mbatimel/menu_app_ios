@@ -6,8 +6,8 @@ protocol DishesServiceProtocol: AnyObject {
 	func getfavoriteDishes() async -> Result<[Dish]>
 	func createDish(request: CreateDishRequest) async -> Result<EmptyDTO>
 	func updateDish(request: UpdateDishRequest) async -> Result<EmptyDTO>
-	func mark(ids: [Int]) async -> Result<EmptyDTO>
-	func unmark(ids: [Int]) async -> Result<EmptyDTO>
+	func mark(request: MarkDishRequest) async -> Result<EmptyDTO>
+	func unmark(request: UnMarkDishRequest) async -> Result<EmptyDTO>
 	func delete(id: Int) async -> Result<EmptyDTO>
 	func deleteAll() async -> Result<EmptyDTO>
 
@@ -31,12 +31,12 @@ class DishesService: Requester, DishesServiceProtocol {
 		return await sendRequest(endpoint: DishesEndpoint.update(request: request), responseModel: EmptyDTO.self)
 	}
 
-	func mark(ids: [Int]) async -> Result<EmptyDTO> {
-		return await sendRequest(endpoint: DishesEndpoint.mark(ids: ids), responseModel: EmptyDTO.self)
+	func mark(request: MarkDishRequest) async -> Result<EmptyDTO> {
+		return await sendRequest(endpoint: DishesEndpoint.mark(request: request), responseModel: EmptyDTO.self)
 	}
 
-	func unmark(ids: [Int]) async -> Result<EmptyDTO> {
-		return await sendRequest(endpoint: DishesEndpoint.unmark(ids: ids), responseModel: EmptyDTO.self)
+	func unmark(request: UnMarkDishRequest) async -> Result<EmptyDTO> {
+		return await sendRequest(endpoint: DishesEndpoint.unmark(request: request), responseModel: EmptyDTO.self)
 	}
 
 	func delete(id: Int) async -> Result<EmptyDTO> {

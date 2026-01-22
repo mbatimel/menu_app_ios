@@ -5,8 +5,8 @@ enum DishesEndpoint: Endpoint {
 	case getFavoritesList
 	case create(request: CreateDishRequest)
 	case update(request: UpdateDishRequest)
-	case mark(ids: [Int])
-	case unmark(ids: [Int])
+    case mark(request:MarkDishRequest)
+	case unmark(request: UnMarkDishRequest)
 	case deleteDish(id: Int)
 	case deleteAll
 	
@@ -54,10 +54,10 @@ enum DishesEndpoint: Endpoint {
 			request
 		case let .update(request):
 			request
-		case let .mark(ids):
-			ids
-		case let .unmark(ids):
-			ids
+		case let .mark(request):
+            request
+		case let .unmark(request):
+            request
 		case let .deleteDish(id):
 			id
 		default:
