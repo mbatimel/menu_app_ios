@@ -12,7 +12,7 @@ struct API {
 		static let mark = "/mark"
 		static let unmark = "/unmark"
 		static let deleteDish = "/delete"
-		static let deleteAll = "/delete/all"
+		static let deleteAll = "/all"
 	}
 
 	enum Chef {
