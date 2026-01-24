@@ -7,7 +7,7 @@ enum DishesEndpoint: Endpoint {
 	case update(request: UpdateDishRequest)
     case mark(request:MarkDishRequest)
 	case unmark(request: UnMarkDishRequest)
-	case deleteDish(id: Int)
+	case deleteDish(request: DeleteDishRequest)
 	case deleteAll
 	
 	var path: String {
@@ -58,8 +58,8 @@ enum DishesEndpoint: Endpoint {
             request
 		case let .unmark(request):
             request
-		case let .deleteDish(id):
-			id
+		case let .deleteDish(request):
+            request
 		default:
 			nil
 		}

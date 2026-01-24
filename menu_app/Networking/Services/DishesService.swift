@@ -8,7 +8,7 @@ protocol DishesServiceProtocol: AnyObject {
 	func updateDish(request: UpdateDishRequest) async -> Result<EmptyDTO>
 	func mark(request: MarkDishRequest) async -> Result<EmptyDTO>
 	func unmark(request: UnMarkDishRequest) async -> Result<EmptyDTO>
-	func delete(id: Int) async -> Result<EmptyDTO>
+    func delete(request: DeleteDishRequest) async -> Result<EmptyDTO>
 	func deleteAll() async -> Result<EmptyDTO>
 
 }
@@ -39,8 +39,8 @@ class DishesService: Requester, DishesServiceProtocol {
 		return await sendRequest(endpoint: DishesEndpoint.unmark(request: request), responseModel: EmptyDTO.self)
 	}
 
-	func delete(id: Int) async -> Result<EmptyDTO> {
-		return await sendRequest(endpoint: DishesEndpoint.deleteDish(id: id), responseModel: EmptyDTO.self)
+    func delete(request: DeleteDishRequest) async -> Result<EmptyDTO> {
+		return await sendRequest(endpoint: DishesEndpoint.deleteDish(request: request), responseModel: EmptyDTO.self)
 	}
 
 	func deleteAll() async -> Result<EmptyDTO> {

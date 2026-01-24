@@ -127,12 +127,10 @@ class MenuViewModel {
         isLoading = true
         errorMessage = nil
 
-		let result = await dishService.delete(id: id)
+        let result = await dishService.delete(request: DeleteDishRequest(id:id))
 		switch result {
 		case .success:
-			withAnimation {
-				dishes.removeAll { $0.id == id }
-			}
+            dishes.removeAll { $0.id == id }
 			isLoading = false
 		case .networkError(let error):
 			errorMessage = error
