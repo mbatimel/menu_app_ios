@@ -16,7 +16,7 @@ struct API {
 	}
 
 	enum Chef {
-		static let current = "chef"
+		static let current = "/chef"
 		static let create = "/create/chef"
 		static let delete = "/chef"
 	}

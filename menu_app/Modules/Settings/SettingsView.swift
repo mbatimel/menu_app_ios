@@ -5,6 +5,7 @@ struct SettingsView: View {
 
     @Bindable var menuViewModel: MenuViewModel
     @State private var viewModel = SettingsViewModel()
+    var currentChef: String?
 
     var body: some View {
         Form {
@@ -32,9 +33,13 @@ struct SettingsView: View {
                         Button("Удалить шефа", role: .destructive) {
                             Task {
                                 await viewModel.deleteChef()
-                                await menuViewModel.loadCurrentChef()
+                                await MainActor.run {
+                                    menuViewModel.currentChef = nil
+                                }
+
                             }
                         }
+
 
                     } else {
                         TextField("Имя шефа", text: $viewModel.chefName)

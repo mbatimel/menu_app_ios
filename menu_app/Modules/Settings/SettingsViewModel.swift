@@ -18,7 +18,15 @@ final class SettingsViewModel {
         )
     }
 
-    func deleteChef() async {
-        _ = await chefService.delete()
+    func deleteChef() async -> Bool {
+        let result = await chefService.delete()
+
+        switch result {
+        case .success:
+            return true
+        case .networkError:
+            return false
+        }
     }
+
 }

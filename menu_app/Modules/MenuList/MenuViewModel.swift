@@ -16,16 +16,8 @@ class MenuViewModel {
 	var showingSettings = false
 	var isLoading = false
 	var errorMessage: String?
-    
+    var currentChef: String?
 
-
-	var currentChef: String? {
-        didSet {
-            if let chef = currentChef {
-                UserDefaults.standard.set(chef, forKey: "currentChef")
-            }
-        }
-    }
     
 	var role: UserRole = .user {
         didSet {
@@ -54,14 +46,17 @@ class MenuViewModel {
         dishService: DishesServiceProtocol = DishesService(),
         chefService: ChefServiceProtocol = ChefService()
     ) {
+        self.dishService = dishService
+        self.chefService = chefService
+
+        self.currentChef = UserDefaults.standard.string(forKey: "currentChef")
+
         if let saved = UserDefaults.standard.string(forKey: "userRole"),
            let role = UserRole(rawValue: saved) {
             self.role = role
         }
-
-        self.dishService = dishService
-        self.chefService = chefService
     }
+
 
 
 
@@ -165,15 +160,26 @@ class MenuViewModel {
 	}
 
     func loadCurrentChef() async {
-           let result = await chefService.current()
+        isLoading = true
+        errorMessage = nil
 
-           switch result {
-           case .success(let chef):
-               self.currentChef = chef.name
-               isLoading=false
-           case .networkError:
-               self.currentChef = nil
-           }
-       }
+        let result = await chefService.current()
+
+        switch result {
+        case .success(let chef):
+            currentChef = chef.name
+            UserDefaults.standard.set(chef.name, forKey: "currentChef")
+            isLoading = false
+
+        case .networkError(let error):
+            currentChef = nil
+            errorMessage = error
+            isLoading = false
+
+            Logger.log(level: .warning, "Error while fetch chef: \(error)")
+        }
+    }
+
+
 
 }

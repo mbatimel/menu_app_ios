@@ -76,8 +76,8 @@ struct MenuListView: View {
             isPresented: $viewModel.showingCreateDish,
             onDismiss: {
                 Task {
-                    await viewModel.loadAllDishes()
                     await viewModel.loadCurrentChef()
+                    await viewModel.loadAllDishes()
                     
                 }
             }
@@ -102,26 +102,22 @@ struct MenuListView: View {
             }
         }
         .task {
-            await viewModel.loadAllDishes()
             await viewModel.loadCurrentChef()
+            await viewModel.loadAllDishes()
 
         }
 	}
 	
-	@ViewBuilder
-	private var chefView: some View {
-		if let chef = viewModel.currentChef {
-			HStack {
-				Image(systemName: "person.crop.circle.fill")
-					.foregroundColor(.blue)
-				Text("Шеф-повар: \(chef)")
-					.font(.subheadline)
-					.foregroundColor(.secondary)
-			}
-			.padding(.vertical, 6)
-		}
-	}
-	
+    @ViewBuilder
+    private var chefView: some View {
+        if let chef = viewModel.currentChef {
+            Text("Шеф-повар: \(chef)")
+                .onAppear {
+                    print("CHEF VIEW APPEARED:", chef)
+                }
+        }
+    }
+
 	// MARK: - Dish list builder
 	
 	
