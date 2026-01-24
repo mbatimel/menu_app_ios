@@ -77,6 +77,8 @@ struct MenuListView: View {
             onDismiss: {
                 Task {
                     await viewModel.loadAllDishes()
+                    await viewModel.loadCurrentChef()
+                    
                 }
             }
         ) {
@@ -86,7 +88,7 @@ struct MenuListView: View {
         }
 		.sheet(isPresented: $viewModel.showingSettings) {
 			NavigationStack {
-				SettingsView()
+                SettingsView(menuViewModel: viewModel)
 			}
 		}
         .sheet(item: $viewModel.editingDish) { selectedDish in
@@ -99,9 +101,11 @@ struct MenuListView: View {
                 )
             }
         }
-		.task {
-			await viewModel.loadAllDishes()
-		}
+        .task {
+            await viewModel.loadAllDishes()
+            await viewModel.loadCurrentChef()
+
+        }
 	}
 	
 	@ViewBuilder

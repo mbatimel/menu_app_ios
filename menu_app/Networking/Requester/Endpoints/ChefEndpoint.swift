@@ -2,7 +2,7 @@ import Foundation
 
 enum ChefEndpoint: Endpoint {
 	case current
-	case create(name: String)
+	case create(request: CreateChefRequest)
 	case delete
 
 	var path: String {
@@ -31,8 +31,8 @@ enum ChefEndpoint: Endpoint {
 
 	var parameters: (any Encodable)? {
 		switch self {
-		case let .create(name):
-			name
+		case let .create(request):
+            request
 		default: nil
 		}
 	}

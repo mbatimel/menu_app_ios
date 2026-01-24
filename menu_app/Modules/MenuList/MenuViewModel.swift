@@ -16,6 +16,7 @@ class MenuViewModel {
 	var showingSettings = false
 	var isLoading = false
 	var errorMessage: String?
+    
 
 
 	var currentChef: String? {
@@ -33,6 +34,8 @@ class MenuViewModel {
     }
 
 	private let dishService: DishesServiceProtocol
+    private let chefService: ChefServiceProtocol
+
 
     // MARK: - Computed
 
@@ -47,14 +50,19 @@ class MenuViewModel {
     }
 
     // MARK: - Init
-    init(dishService: DishesServiceProtocol = DishesService()) {
+    init(
+        dishService: DishesServiceProtocol = DishesService(),
+        chefService: ChefServiceProtocol = ChefService()
+    ) {
         if let saved = UserDefaults.standard.string(forKey: "userRole"),
-              let role = UserRole(rawValue: saved) {
-               self.role = role
-           }
-           currentChef = UserDefaults.standard.string(forKey: "currentChef")
-		self.dishService = dishService
+           let role = UserRole(rawValue: saved) {
+            self.role = role
+        }
+
+        self.dishService = dishService
+        self.chefService = chefService
     }
+
 
 
     // MARK: - Public Methods
@@ -155,5 +163,17 @@ class MenuViewModel {
 		}
 
 	}
+
+    func loadCurrentChef() async {
+           let result = await chefService.current()
+
+           switch result {
+           case .success(let chef):
+               self.currentChef = chef.name
+               isLoading=false
+           case .networkError:
+               self.currentChef = nil
+           }
+       }
 
 }

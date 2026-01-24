@@ -1,49 +1,68 @@
 import SwiftUI
 
 struct SettingsView: View {
-	@Environment(\.dismiss) var dismiss
+    @Environment(\.dismiss) var dismiss
 
-	@State private var viewModel = SettingsViewModel()
-	
-	var body: some View {
-		Form {
-			Section("API Настройки") {
-				TextField("Secret ID", text: $viewModel.secretId)
-					.textContentType(.none)
-					.autocapitalization(.none)
-				
-				Button("Сохранить Secret ID") {
-					UserDefaults.standard.set(viewModel.secretId, forKey: "secretId")
+    @Bindable var menuViewModel: MenuViewModel
+    @State private var viewModel = SettingsViewModel()
 
-					let newRole = roleFromSecret(viewModel.secretId)
-//					menuViewModel.role = newRole
-				}
-			}
-			
-//			if menuViewModel.role != .user {
-//				Section("Шеф-повар") {
-//					TextField("Имя шефа", text: $viewModel.chefName)
-//					
-//					Button("Создать шефа") {
-//						viewModel.createChef()
-//					}
-//					.disabled(viewModel.chefName.isEmpty)
-//				}
-//			}
-			
-		}
-		.navigationTitle("Настройки")
-		.navigationBarTitleDisplayMode(.inline)
-		.toolbar {
-			ToolbarItem(placement: .navigationBarTrailing) {
-				Button("Готово") {
-					dismiss()
-				}
-			}
-		}
-	}
+    var body: some View {
+        Form {
+
+            Section("API") {
+                TextField("Secret ID", text: $viewModel.secretId)
+                    .textContentType(.none)
+                    .autocapitalization(.none)
+
+                Button("Сохранить") {
+                    UserDefaults.standard.set(
+                        viewModel.secretId,
+                        forKey: "secretId"
+                    )
+                }
+            }
+
+            if menuViewModel.role.permissions.canDeleteDish {
+
+                Section("Шеф-повар") {
+
+                    if let chef = menuViewModel.currentChef {
+                        Text("Текущий: \(chef)")
+
+                        Button("Удалить шефа", role: .destructive) {
+                            Task {
+                                await viewModel.deleteChef()
+                                await menuViewModel.loadCurrentChef()
+                            }
+                        }
+
+                    } else {
+                        TextField("Имя шефа", text: $viewModel.chefName)
+
+                        Button("Создать шефа") {
+                            Task {
+                                await viewModel.createChef()
+                                await menuViewModel.loadCurrentChef()
+                            }
+                            dismiss()
+                        }
+                        .disabled(viewModel.chefName.isEmpty)
+                    }
+                }
+            }
+        }
+        .navigationTitle("Настройки")
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button("Готово") {
+                    dismiss()
+                }
+            }
+        }
+    }
 }
 
+
 #Preview {
-	SettingsView()
+    SettingsView(menuViewModel: MenuViewModel())
 }

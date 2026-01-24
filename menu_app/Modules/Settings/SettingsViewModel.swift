@@ -2,40 +2,23 @@ import Foundation
 
 @Observable
 final class SettingsViewModel {
-	var chefName: String = ""
-	var secretId: String = UserDefaults.standard.string(forKey: "secretId") ?? "YOUR_SECRET_UUID_HERE"
-	
-	let chefService: ChefServiceProtocol
-	
-	init(chefService: ChefServiceProtocol = ChefService()) {
-		self.chefService = chefService
-	}
-	
-	// MARK: - Public Methods
-	
-	func createChef() {
-		Task {
-			await createChefRequest()
-		}
-	}
-	
-	// MARK: - Private Methods
-	
-	private func createChefRequest() async {
-		let result = await chefService.create(name: chefName)
 
-		switch result {
-		case .success:
-			UserDefaults.standard.set(chefName, forKey: "currentChef")
-		case .networkError(let error):
-			Logger.log(level: .warning, "Error while create new chef \(error)")
-		}
+    var chefName = ""
+    var secretId = UserDefaults.standard.string(forKey: "secretId") ?? ""
 
-//		do {
-//			UserDefaults.standard.set(chefName, forKey: "currentChef")
-//			viewModel.currentChef = chefName
-//		} catch {
-//			print("Ошибка создания шефа: \(error)")
-//		}
-	}
+    let chefService: ChefServiceProtocol
+
+    init(chefService: ChefServiceProtocol = ChefService()) {
+        self.chefService = chefService
+    }
+
+    func createChef() async {
+        _ = await chefService.create(
+            request: CreateChefRequest(name: chefName)
+        )
+    }
+
+    func deleteChef() async {
+        _ = await chefService.delete()
+    }
 }
