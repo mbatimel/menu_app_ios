@@ -50,6 +50,7 @@ struct DishRowView: View {
             } label: {
                 Image(systemName: "ellipsis")
                     .foregroundColor(.secondary)
+                    .padding(8)
             }
 
         }

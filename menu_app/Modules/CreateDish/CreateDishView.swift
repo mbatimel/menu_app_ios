@@ -28,6 +28,7 @@ struct CreateDishView: View {
 			ToolbarItem(placement: .navigationBarTrailing) {
 				Button("Создать") {
 					viewModel.createDish()
+                    dismiss()
 				}
 				.disabled(viewModel.name.isEmpty)
 			}

@@ -9,11 +9,5 @@ import Foundation
 
 struct CreateDishRequest: Encodable {
 	let dish: String
-	let category: String
-
-	enum CodingKeys: String, CodingKey {
-		case dish
-		case category = "categoty"
-	}
-
+	let category: DishCategory
 }

@@ -72,11 +72,18 @@ struct MenuListView: View {
 				}
 			}
 		}
-		.sheet(isPresented: $viewModel.showingCreateDish) {
-			NavigationStack {
-				CreateDishView()
-			}
-		}
+        .sheet(
+            isPresented: $viewModel.showingCreateDish,
+            onDismiss: {
+                Task {
+                    await viewModel.loadAllDishes()
+                }
+            }
+        ) {
+            NavigationStack {
+                CreateDishView()
+            }
+        }
 		.sheet(isPresented: $viewModel.showingSettings) {
 			NavigationStack {
 				SettingsView()
@@ -170,3 +177,4 @@ struct MenuListView: View {
 		MenuListView(viewModel: .init())
 	}
 }
+

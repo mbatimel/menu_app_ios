@@ -8,6 +8,7 @@ final class CreateDishViewModel {
 	var errorMessage: String? = nil
 
 	private let dishService: DishesServiceProtocol
+    
 
 	// MARK: - Init
 
@@ -19,14 +20,14 @@ final class CreateDishViewModel {
 
 	func createDish() {
 		Task {
-			await createDishRequest()
+			await createDishRequest(name: name, catorgory: selectedCategory)
 		}
 	}
 
 	// MARK: - Private Methods
 
-	private func createDishRequest() async {
-		let request = CreateDishRequest(dish: name, category: selectedCategory.rawValue)
+    private func createDishRequest(name: String, catorgory: DishCategory) async {
+		let request = CreateDishRequest(dish: name, category: catorgory)
 		let result = await dishService.createDish(request: request)
 
 		switch result {
