@@ -77,17 +77,18 @@ class MenuViewModel {
 
     // MARK: - Update (МГНОВЕННО)
 
-    func updateDish(id: Int, newName: String) async {
+    func updateDish(id: Int, newName: String, newCategory: DishCategory) async {
         guard role.permissions.canEditDish else { return }
         isLoading = true
         errorMessage = nil
 
-		let request = UpdateDishRequest(id: id, text: newName)
+        let request = UpdateDishRequest(id: id, text: newName, category: newCategory)
 		let result = await dishService.updateDish(request: request)
 		switch result {
 		case .success:
 			if let index = dishes.firstIndex(where: { $0.id == id }) {
 				dishes[index].name = newName
+                dishes[index].category=newCategory
 			}
 			isLoading = false
 		case .networkError(let error):

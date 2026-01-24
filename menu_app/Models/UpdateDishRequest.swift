@@ -10,4 +10,5 @@ import Foundation
 struct UpdateDishRequest: Encodable {
     let id: Int
     let text: String
+    let category: DishCategory
 }

@@ -36,15 +36,3 @@ struct EditDishView: View {
 	}
 }
 
-#Preview {
-	EditDishView(
-		viewModel: EditDishViewModel(
-			selectedDish: .init(
-				id: 1,
-				name: "Карбонара",
-				category: .hotDishes,
-				favourite: true
-			)
-		)
-	)
-}

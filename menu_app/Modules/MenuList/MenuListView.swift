@@ -82,11 +82,16 @@ struct MenuListView: View {
 				SettingsView()
 			}
 		}
-		.sheet(item: $viewModel.editingDish) { selectedDish in
-			NavigationStack {
-				EditDishView(viewModel: EditDishViewModel(selectedDish: selectedDish))
-			}
-		}
+        .sheet(item: $viewModel.editingDish) { selectedDish in
+            NavigationStack {
+                EditDishView(
+                    viewModel: EditDishViewModel(
+                        menuViewModel: viewModel,
+                        selectedDish: selectedDish
+                    )
+                )
+            }
+        }
 		.task {
 			await viewModel.loadAllDishes()
 		}
