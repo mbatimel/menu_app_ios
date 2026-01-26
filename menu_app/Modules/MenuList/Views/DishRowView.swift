@@ -2,6 +2,8 @@ import SwiftUI
 
 struct DishRowView: View {
 
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+
     let dish: Dish
     let isSelected: Bool
     let canToggleFavorite: Bool
@@ -14,22 +16,37 @@ struct DishRowView: View {
     let onDelete: () -> Void
     let index: Int
 
+    private var isIPad: Bool {
+        horizontalSizeClass == .regular
+    }
 
     var body: some View {
         HStack(spacing: 12) {
-            VStack(alignment: .leading, spacing: 4) {
+
+            VStack(
+                alignment: isIPad ? .center : .leading,
+                spacing: 4
+            ) {
                 Text(dish.name)
                     .font(.body)
-					.foregroundStyle(.primary)
+                    .foregroundStyle(.primary)
+                    .frame(
+                        maxWidth: .infinity,
+                        alignment: isIPad ? .center : .leading
+                    )
 
                 Text(dish.category.displayName)
                     .font(.caption)
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
+                    .frame(
+                        maxWidth: .infinity,
+                        alignment: isIPad ? .center : .leading
+                    )
             }
 
             Spacer()
 
-            // Избранное ⭐
+            // ⭐ Избранное
             if canToggleFavorite {
                 Button(action: onToggleFavorite) {
                     Image(systemName: dish.favourite ? "star.fill" : "star")
@@ -37,13 +54,13 @@ struct DishRowView: View {
                 }
                 .buttonStyle(.plain)
             }
+
+            // ⋯ Меню
             if canEdit || canDelete {
-                // Меню действий
                 Menu {
                     if canEdit {
                         Button("Редактировать", action: onEdit)
                     }
-
                     if canDelete {
                         Button("Удалить", role: .destructive, action: onDelete)
                     }
@@ -53,30 +70,7 @@ struct DishRowView: View {
                         .padding(8)
                 }
             }
-            
-
         }
         .padding(.vertical, 6)
     }
-}
-
-#Preview {
-	DishRowView(
-		dish: .init(
-			id: 1,
-			name: "Test",
-			category: .hotDishes,
-			favourite: true
-		),
-		isSelected: false,
-		canToggleFavorite: true,
-		canEdit: true,
-		canDelete: true,
-		onToggleSelection: {
-		},
-		onToggleFavorite: {},
-		onEdit: {},
-		onDelete: {},
-		index: 1)
-	.padding(.horizontal, 16)
 }
