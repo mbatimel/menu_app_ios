@@ -10,19 +10,6 @@ struct SettingsView: View {
     var body: some View {
         Form {
 
-            Section("API") {
-                TextField("Secret ID", text: $viewModel.secretId)
-                    .textContentType(.none)
-                    .autocapitalization(.none)
-
-                Button("Сохранить") {
-                    UserDefaults.standard.set(
-                        viewModel.secretId,
-                        forKey: "secretId"
-                    )
-                }
-            }
-
             if menuViewModel.role.permissions.canDeleteDish {
 
                 Section("Шеф-повар") {

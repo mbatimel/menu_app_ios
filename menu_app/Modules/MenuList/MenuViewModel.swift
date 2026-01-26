@@ -22,6 +22,7 @@ class MenuViewModel {
 	var role: UserRole = .user {
         didSet {
             UserDefaults.standard.set(role.rawValue, forKey: "userRole")
+            UserDefaults.standard.set(true, forKey: UserDefaultsKeys.hasRoleSelected)
         }
     }
 
@@ -41,21 +42,27 @@ class MenuViewModel {
         dishes.filter { $0.favourite }
     }
 
-    // MARK: - Init
-    init(
-        dishService: DishesServiceProtocol = DishesService(),
-        chefService: ChefServiceProtocol = ChefService()
-    ) {
-        self.dishService = dishService
-        self.chefService = chefService
 
-        self.currentChef = UserDefaults.standard.string(forKey: "currentChef")
+        init(
+            dishService: DishesServiceProtocol = DishesService(),
+            chefService: ChefServiceProtocol = ChefService()
+        ) {
+            self.dishService = dishService
+            self.chefService = chefService
 
-        if let saved = UserDefaults.standard.string(forKey: "userRole"),
-           let role = UserRole(rawValue: saved) {
-            self.role = role
+            self.currentChef = UserDefaults.standard.string(forKey: "currentChef")
+
+            if let saved = UserDefaults.standard.string(forKey: UserDefaultsKeys.userRole),
+               let role = UserRole(rawValue: saved) {
+                self.role = role
+            } else {
+                self.role = .user
+            }
         }
-    }
+
+        func applySecret(_ secret: String) {
+            self.role = roleFromSecret(secret)
+        }
 
 
 
@@ -104,23 +111,25 @@ class MenuViewModel {
     // MARK: - Favorite (МГНОВЕННО)
 
     func toggleFavorite(dishId: Int) async {
-        guard role.permissions.canDeleteDish else { return }
-		guard let index = dishes.firstIndex(
-			where: { $0.id == dishId
-			}) else { return }
+        guard role.permissions.canToggleFavorite else { return }
+        guard let index = dishes.firstIndex(where: { $0.id == dishId }) else { return }
 
         let newValue = !dishes[index].favourite
-        dishes[index].favourite = newValue   // UI обновляется сразу
-        let result = newValue ? await dishService.mark(request:MarkDishRequest(ids:[dishId])) : await dishService.unmark(request:UnMarkDishRequest(ids:[dishId]))
-		
-		switch result {
-		case .success:
-			break
-		case .networkError(let error):
-			dishes[index].favourite.toggle()
-			errorMessage = error
-		}
+        dishes[index].favourite = newValue
+
+        let result = newValue
+            ? await dishService.mark(request: MarkDishRequest(ids: [dishId]))
+            : await dishService.unmark(request: UnMarkDishRequest(ids: [dishId]))
+
+        switch result {
+        case .success:
+            break
+        case .networkError(let error):
+            dishes[index].favourite.toggle()
+            errorMessage = error
+        }
     }
+
 
     // MARK: - Delete
 

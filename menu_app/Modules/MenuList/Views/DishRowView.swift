@@ -37,21 +37,23 @@ struct DishRowView: View {
                 }
                 .buttonStyle(.plain)
             }
+            if canEdit || canDelete {
+                // Меню действий
+                Menu {
+                    if canEdit {
+                        Button("Редактировать", action: onEdit)
+                    }
 
-            // Меню действий
-            Menu {
-                if canEdit {
-                    Button("Редактировать", action: onEdit)
+                    if canDelete {
+                        Button("Удалить", role: .destructive, action: onDelete)
+                    }
+                } label: {
+                    Image(systemName: "ellipsis")
+                        .foregroundColor(.secondary)
+                        .padding(8)
                 }
-
-                if canDelete {
-                    Button("Удалить", role: .destructive, action: onDelete)
-                }
-            } label: {
-                Image(systemName: "ellipsis")
-                    .foregroundColor(.secondary)
-                    .padding(8)
             }
+            
 
         }
         .padding(.vertical, 6)

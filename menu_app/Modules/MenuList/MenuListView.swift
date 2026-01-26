@@ -86,11 +86,13 @@ struct MenuListView: View {
                 CreateDishView()
             }
         }
-		.sheet(isPresented: $viewModel.showingSettings) {
-			NavigationStack {
+        .sheet(
+            isPresented: $viewModel.showingSettings
+        ) {
+            NavigationStack {
                 SettingsView(menuViewModel: viewModel)
-			}
-		}
+            }
+        }
         .sheet(item: $viewModel.editingDish) { selectedDish in
             NavigationStack {
                 EditDishView(
@@ -111,10 +113,19 @@ struct MenuListView: View {
     @ViewBuilder
     private var chefView: some View {
         if let chef = viewModel.currentChef {
-            Text("Шеф-повар: \(chef)")
-                .onAppear {
-                    print("CHEF VIEW APPEARED:", chef)
-                }
+            HStack {
+                Text("Шеф-повар: \(chef)")
+
+                Spacer()
+
+                Text(Date(), style: .date)
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+            }
+            .padding(.horizontal)
+            .onAppear {
+                print("CHEF VIEW APPEARED:", chef)
+            }
         }
     }
 

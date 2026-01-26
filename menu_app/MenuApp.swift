@@ -5,13 +5,13 @@ struct MenuApp: App {
 	private let dailyCleanupService = DailyCleanupService()
 
     init() {
-		dailyCleanupService.scheduleDailyCleanup()
+        dailyCleanupService.scheduleDailyCleanup()
         checkAndPerformCleanupIfNeeded()
     }
-    
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RootView()
         }
     }
     
