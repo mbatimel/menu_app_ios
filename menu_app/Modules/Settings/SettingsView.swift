@@ -5,43 +5,62 @@ struct SettingsView: View {
 
     @Bindable var menuViewModel: MenuViewModel
     @State private var viewModel = SettingsViewModel()
-    var currentChef: String?
 
     var body: some View {
         Form {
+            Section {
+                if let chef = menuViewModel.currentChef {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("Текущий шеф-повар")
+                            .font(.caption)
+                            .foregroundStyle(MenuColors.secondary)
 
-            if menuViewModel.role.permissions.canDeleteDish {
-
-                Section("Шеф-повар") {
-
-                    if let chef = menuViewModel.currentChef {
-                        Text("Текущий: \(chef)")
-
-                        Button("Удалить шефа", role: .destructive) {
-                            Task {
-                                await viewModel.deleteChef()
-                                await MainActor.run {
-                                    menuViewModel.currentChef = nil
-                                }
-
-                            }
-                        }
-
-
-                    } else {
-                        TextField("Имя шефа", text: $viewModel.chefName)
-
-                        Button("Создать шефа") {
-                            Task {
-                                await viewModel.createChef()
-                                await menuViewModel.loadCurrentChef()
-                            }
-                            dismiss()
-                        }
-                        .disabled(viewModel.chefName.isEmpty)
+                        Text(chef)
+                            .font(.system(size: 17, weight: .semibold, design: .serif))
+                            .foregroundStyle(MenuColors.text)
                     }
+                    .padding(.vertical, 4)
+
+                    Divider()
+
+                    Button {
+                        Task {
+                            await viewModel.deleteChef()
+                            await MainActor.run {
+                                menuViewModel.currentChef = nil
+                            }
+                        }
+                    } label: {
+                        Text("Удалить шефа")
+                            .foregroundStyle(MenuColors.destructive)
+                            .font(.system(size: 16, weight: .medium, design: .serif))
+                    }
+
+                } else {
+                    TextField("Имя шеф-повара", text: $viewModel.chefName)
+                        .foregroundStyle(MenuColors.text)
+                        .tint(MenuColors.section)
+                        .font(.system(size: 16, weight: .medium, design: .serif))
+                    Button {
+                        Task {
+                            await viewModel.createChef()
+                            await menuViewModel.loadCurrentChef()
+                        }
+                        dismiss()
+                    } label: {
+                        Text("Создать шефа")
+                            .foregroundStyle(MenuColors.section)
+                            .fontWeight(.semibold)
+                        
+                    }
+                    .disabled(viewModel.chefName.isEmpty)
                 }
+            } header: {
+                Text("Шеф-повар")
+                    .font(.system(size: 14, weight: .semibold, design: .serif))
+                    .foregroundStyle(MenuColors.section)
             }
+            .listRowBackground(MenuColors.paper)  
         }
         .scrollContentBackground(.hidden)
         .background(MenuColors.background)
@@ -50,13 +69,10 @@ struct SettingsView: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button("Готово") {
                     dismiss()
-                }.foregroundStyle(MenuColors.section)
+                }
+                .foregroundStyle(MenuColors.section)
+                .fontWeight(.semibold)
             }
         }
     }
-}
-
-
-#Preview {
-    SettingsView(menuViewModel: MenuViewModel())
 }

@@ -14,4 +14,5 @@ enum MenuColors {
     static let secondary = Color(red: 0.45, green: 0.42, blue: 0.38)   // вторичный
     static let section = Color(red: 0.64, green: 0.49, blue: 0.26)     // заголовки
     static let divider = Color(red: 0.80, green: 0.72, blue: 0.60)
+    static let destructive = Color(red: 0.65, green: 0.20, blue: 0.18)
 }
