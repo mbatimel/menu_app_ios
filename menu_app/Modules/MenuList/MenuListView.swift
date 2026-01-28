@@ -2,7 +2,7 @@ import SwiftUI
 
 struct MenuListView: View {
 
-    @State var viewModel: MenuViewModel
+    @Bindable var viewModel: MenuViewModel
 
     var body: some View {
         ZStack {
@@ -42,7 +42,7 @@ struct MenuListView: View {
                         )
                     }
                     .listStyle(.plain)
-                    .scrollContentBackground(.hidden) // 🔥 УБИРАЕМ ЧЁРНЫЙ ФОН
+                    .scrollContentBackground(.hidden)
                 }
             }
         }
@@ -71,6 +71,58 @@ struct MenuListView: View {
                     }
                     .foregroundColor(MenuColors.section)
                 }
+                if viewModel.role.permissions.canDeleteDish {
+                    Menu {
+                        Button("Удалить все", role: .destructive) {
+                            Task {
+                                await viewModel.deleteAllDishes()
+                            }
+                        }
+                    } label: {
+                        Image(systemName: "ellipsis.circle")
+                    }
+                }
+            }
+        }
+        .sheet(
+            isPresented: $viewModel.showingCreateDish,
+            onDismiss: {
+                Task {
+                    await viewModel.loadCurrentChef()
+                    await viewModel.loadAllDishes()
+                    
+                }
+            }
+        ) {
+            NavigationStack {
+                CreateDishView()
+            }
+        }
+        .sheet(
+            isPresented: $viewModel.showingSettings
+        ) {
+            NavigationStack {
+                SettingsView(menuViewModel: viewModel)
+
+
+
+
+
+
+
+
+
+
+            }
+        }
+        .sheet(item: $viewModel.editingDish) { selectedDish in
+            NavigationStack {
+                EditDishView(
+                    viewModel: EditDishViewModel(
+                        menuViewModel: viewModel,
+                        selectedDish: selectedDish
+                    )
+                )
             }
         }
         .task {
