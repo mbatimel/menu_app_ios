@@ -1,191 +1,163 @@
 import SwiftUI
 
 struct MenuListView: View {
-	
-	@State var viewModel: MenuViewModel
-	
-	var body: some View {
-		VStack {
-			chefView
 
-			Picker("", selection: $viewModel.selectedTab) {
-				Text("Все блюда").tag(0)
-				Text("Избранное").tag(1)
-			}
-			.pickerStyle(.segmented)
-			.padding(.horizontal)
-			
-			if viewModel.isLoading {
-				Spacer()
-				ProgressView()
-				Spacer()
-			} else {
-				List {
-					groupedList(
-						viewModel.selectedTab == 0
-						? viewModel.groupedDishes
-						: Dictionary(
-							grouping: viewModel.favoriteDishes,
-							by: { $0.category }
-						)
-					)
-				}
-				.listStyle(.insetGrouped)
-				.scrollContentBackground(.hidden)
-			}
-			
-			if let error = viewModel.errorMessage {
-				Text(error)
-					.foregroundColor(.red)
-					.padding()
-			}
-		}
-		.navigationTitle("Меню")
-		.toolbar {
-			ToolbarItem(placement: .navigationBarLeading) {
-				Button {
-					viewModel.showingSettings = true
-				} label: {
-					Image(systemName: "gear")
-						.foregroundStyle(.blue)
-				}
-			}
-			
-			ToolbarItemGroup(placement: .navigationBarTrailing) {
-				
-				if viewModel.role.permissions.canCreateDish {
-					Button("Добавить") {
-						viewModel.showingCreateDish = true
-					}
-				}
-				
-				if viewModel.role.permissions.canDeleteDish {
-					Menu {
-						Button("Удалить все", role: .destructive) {
-							Task {
-								await viewModel.deleteAllDishes()
-							}
-						}
-					} label: {
-						Image(systemName: "ellipsis.circle")
-					}
-				}
-			}
-		}
-        .sheet(
-            isPresented: $viewModel.showingCreateDish,
-            onDismiss: {
-                Task {
-                    await viewModel.loadCurrentChef()
-                    await viewModel.loadAllDishes()
-                    
+    @State var viewModel: MenuViewModel
+
+    var body: some View {
+        ZStack {
+            PaperBackground()
+
+            VStack(spacing: 0) {
+                chefView
+
+                Picker("", selection: $viewModel.selectedTab) {
+                    Text("Все блюда").tag(0)
+                    Text("Избранное").tag(1)
+                }
+                .pickerStyle(.segmented)
+                .padding(4)
+                .background(
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(MenuColors.paper)
+                        .shadow(color: .black.opacity(0.05), radius: 3)
+                )
+                .padding(.horizontal)
+                .tint(MenuColors.section)
+
+
+                if viewModel.isLoading {
+                    Spacer()
+                    ProgressView()
+                    Spacer()
+                } else {
+                    List {
+                        groupedList(
+                            viewModel.selectedTab == 0
+                            ? viewModel.groupedDishes
+                            : Dictionary(
+                                grouping: viewModel.favoriteDishes,
+                                by: { $0.category }
+                            )
+                        )
+                    }
+                    .listStyle(.plain)
+                    .scrollContentBackground(.hidden) // 🔥 УБИРАЕМ ЧЁРНЫЙ ФОН
                 }
             }
-        ) {
-            NavigationStack {
-                CreateDishView()
-            }
         }
-        .sheet(
-            isPresented: $viewModel.showingSettings
-        ) {
-            NavigationStack {
-                SettingsView(menuViewModel: viewModel)
+        .navigationTitle("Меню")
+        .toolbarTitleDisplayMode(.large)
+        .toolbarBackground(MenuColors.background, for: .navigationBar)
+        .toolbarColorScheme(.light, for: .navigationBar)
+        .toolbar {
+
+            ToolbarItem(placement: .navigationBarLeading) {
+                if viewModel.role.permissions.canDeleteDish {
+                    Button {
+                        viewModel.showingSettings = true
+                    } label: {
+                        Image(systemName: "gear")
+                            .foregroundColor(MenuColors.section)
+                    }
+                }
             }
-        }
-        .sheet(item: $viewModel.editingDish) { selectedDish in
-            NavigationStack {
-                EditDishView(
-                    viewModel: EditDishViewModel(
-                        menuViewModel: viewModel,
-                        selectedDish: selectedDish
-                    )
-                )
+
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+
+                if viewModel.role.permissions.canCreateDish {
+                    Button("Добавить") {
+                        viewModel.showingCreateDish = true
+                    }
+                    .foregroundColor(MenuColors.section)
+                }
             }
         }
         .task {
             await viewModel.loadCurrentChef()
             await viewModel.loadAllDishes()
-
         }
-	}
-	
+    }
+
+ 
+
+    // MARK: - Chef & Date Header
+
     @ViewBuilder
     private var chefView: some View {
         if let chef = viewModel.currentChef {
             HStack {
+                
                 Text("Шеф-повар: \(chef)")
+                    .font(.system(size: 15, weight: .semibold, design: .serif))
+                    .foregroundColor(MenuColors.text)
 
                 Spacer()
 
-                Text(Date(), style: .date)
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
+                
+                Text(formattedDate())
+                    .font(.system(size: 14, weight: .medium, design: .serif))
+                    .foregroundColor(MenuColors.secondary)
             }
             .padding(.horizontal)
-            .onAppear {
-                print("CHEF VIEW APPEARED:", chef)
+            .padding(.top, 6)
+        }
+    }
+
+
+    // MARK: - List
+
+    @ViewBuilder
+    private func groupedList(_ groups: [DishCategory: [Dish]]) -> some View {
+        ForEach(DishCategory.allCases, id: \.self) { category in
+            if let dishes = groups[category], !dishes.isEmpty {
+
+                Section {
+                    dishList(dishes)
+                } header: {
+                    VStack(spacing: 6) {
+                        Text(category.displayName)
+                            .font(.system(size: 15, weight: .semibold, design: .serif))
+                            .foregroundColor(MenuColors.section)
+
+                        DecorativeDivider()
+                    }
+                    .padding(.top, 12)
+                }
             }
         }
     }
 
-	// MARK: - Dish list builder
-	
-	
-	
-	@ViewBuilder
-	private func dishList(_ dishes: [Dish]) -> some View {
-		ForEach(Array(dishes.enumerated()), id: \.element.id) { index, dish in
-			DishRowView(
-				dish: dish,
-				isSelected: viewModel.selectedDishes.contains(dish.id),
-				canToggleFavorite: viewModel.role.permissions.canToggleFavorite,
-				canEdit: viewModel.role.permissions.canEditDish,
-				canDelete: viewModel.role.permissions.canDeleteDish,
-				onToggleSelection: {
-					toggleSelection(dish.id)
-				},
-				onToggleFavorite: {
-					Task {
-						await viewModel.toggleFavorite(dishId: dish.id)
-					}
-				},
-				onEdit: {
-					viewModel.editingDish = dish
-				},
-				onDelete: {
-					Task {
-						await viewModel.deleteDish(id: dish.id)
-					}
-				},
-				index: index + 1
-			)
-		}
-	}
-	
-	private func toggleSelection(_ id: Int) {
-		if viewModel.selectedDishes.contains(id) {
-			viewModel.selectedDishes.remove(id)
-		} else {
-			viewModel.selectedDishes.insert(id)
-		}
-	}
-	
-	@ViewBuilder
-	private func groupedList(_ groups: [DishCategory: [Dish]]) -> some View {
-		ForEach(DishCategory.allCases, id: \.self) { category in
-			if let dishes = groups[category], !dishes.isEmpty {
-				Section(header: Text(category.displayName)) {
-					dishList(dishes)
-				}
-			}
-		}
-	}
-}
+    private func dishList(_ dishes: [Dish]) -> some View {
+        ForEach(dishes) { dish in
+            DishRowView(
+                dish: dish,
+                isSelected: false,
+                canToggleFavorite: viewModel.role.permissions.canToggleFavorite,
+                canEdit: viewModel.role.permissions.canEditDish,
+                canDelete: viewModel.role.permissions.canDeleteDish,
+                onToggleSelection: {},
+                onToggleFavorite: {
+                    Task { await viewModel.toggleFavorite(dishId: dish.id) }
+                },
+                onEdit: {
+                    viewModel.editingDish = dish
+                },
+                onDelete: {
+                    Task { await viewModel.deleteDish(id: dish.id) }
+                },
+                index: 0
+            )
+        }
+    }
+    // MARK: - Date formatter (RU)
 
-#Preview {
-	NavigationStack {
-		MenuListView(viewModel: .init())
-	}
-}
+    private func formattedDate() -> String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ru_RU")
+        formatter.dateStyle = .long
+        formatter.timeStyle = .none
+        return formatter.string(from: Date())
+    }
 
+}

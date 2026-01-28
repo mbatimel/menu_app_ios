@@ -3,7 +3,6 @@ import SwiftUI
 struct DishRowView: View {
 
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
-
     let dish: Dish
     let isSelected: Bool
     let canToggleFavorite: Bool
@@ -25,37 +24,27 @@ struct DishRowView: View {
 
             VStack(
                 alignment: isIPad ? .center : .leading,
-                spacing: 4
+                spacing: 6
             ) {
                 Text(dish.name)
-                    .font(.body)
-                    .foregroundStyle(.primary)
-                    .frame(
-                        maxWidth: .infinity,
-                        alignment: isIPad ? .center : .leading
-                    )
+                    .font(.system(size: 16, weight: .medium, design: .serif))
+                    .foregroundColor(MenuColors.text)
 
                 Text(dish.category.displayName)
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                    .frame(
-                        maxWidth: .infinity,
-                        alignment: isIPad ? .center : .leading
-                    )
+                    .font(.system(size: 13, design: .serif))
+                    .foregroundColor(MenuColors.secondary)
             }
 
             Spacer()
 
-            // ⭐ Избранное
             if canToggleFavorite {
                 Button(action: onToggleFavorite) {
                     Image(systemName: dish.favourite ? "star.fill" : "star")
-                        .foregroundColor(dish.favourite ? .yellow : .gray)
+                        .foregroundColor(MenuColors.section)
                 }
                 .buttonStyle(.plain)
             }
 
-            // ⋯ Меню
             if canEdit || canDelete {
                 Menu {
                     if canEdit {
@@ -66,11 +55,17 @@ struct DishRowView: View {
                     }
                 } label: {
                     Image(systemName: "ellipsis")
-                        .foregroundColor(.secondary)
+                        .foregroundColor(MenuColors.secondary)
                         .padding(8)
                 }
             }
         }
-        .padding(.vertical, 6)
+        .padding()
+        .background(
+            RoundedRectangle(cornerRadius: 16)
+                .fill(MenuColors.paper)
+                .shadow(color: .black.opacity(0.06), radius: 6, y: 2)
+        )
+        .listRowBackground(Color.clear) // 🔥 КЛЮЧЕВОЕ
     }
 }

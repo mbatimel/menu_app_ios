@@ -58,6 +58,19 @@ class MenuViewModel {
             } else {
                 self.role = .user
             }
+            let appearance = UISegmentedControl.appearance()
+
+            appearance.selectedSegmentTintColor = UIColor(MenuColors.paper)
+
+            appearance.setTitleTextAttributes([
+                .font: UIFont.systemFont(ofSize: 14, weight: .semibold),
+                .foregroundColor: UIColor(MenuColors.text)
+            ], for: .selected)
+
+            appearance.setTitleTextAttributes([
+                .font: UIFont.systemFont(ofSize: 14, weight: .medium),
+                .foregroundColor: UIColor(MenuColors.secondary)
+            ], for: .normal)
         }
 
         func applySecret(_ secret: String) {

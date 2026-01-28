@@ -43,12 +43,14 @@ struct SettingsView: View {
                 }
             }
         }
+        .scrollContentBackground(.hidden)
+        .background(MenuColors.background)
         .navigationTitle("Настройки")
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button("Готово") {
                     dismiss()
-                }
+                }.foregroundStyle(MenuColors.section)
             }
         }
     }
