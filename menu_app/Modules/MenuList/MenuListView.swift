@@ -43,6 +43,16 @@ struct MenuListView: View {
                     }
                     .listStyle(.plain)
                     .scrollContentBackground(.hidden)
+                    .refreshable {
+                        await viewModel.silentReloadAll()
+                    }
+                    .onAppear {
+                        viewModel.startAutoRefresh()
+                    }
+                    .onDisappear {
+                        viewModel.stopAutoRefresh()
+                    }
+
                 }
             }
         }

@@ -3,129 +3,150 @@ import SwiftUI
 
 @MainActor
 @Observable
-class MenuViewModel {
+final class MenuViewModel {
 
     // MARK: - State
-	var dishes: [Dish] = []
 
-	var selectedDishes: Set<Int> = []
-	var editingDish: Dish?
+    var dishes: [Dish] = []
+    var selectedDishes: Set<Int> = []
+    var editingDish: Dish?
 
-	var selectedTab = 0
-	var showingCreateDish = false
-	var showingSettings = false
-	var isLoading = false
-	var errorMessage: String?
+    var selectedTab = 0
+    var showingCreateDish = false
+    var showingSettings = false
+
+    /// Используется ТОЛЬКО при первом входе
+    var isLoading = false
+    var errorMessage: String?
+
     var currentChef: String?
 
-    
-	var role: UserRole = .user {
+    private var autoRefreshTask: Task<Void, Never>?
+
+    var role: UserRole = .user {
         didSet {
             UserDefaults.standard.set(role.rawValue, forKey: "userRole")
             UserDefaults.standard.set(true, forKey: UserDefaultsKeys.hasRoleSelected)
         }
     }
 
-	private let dishService: DishesServiceProtocol
+    private let dishService: DishesServiceProtocol
     private let chefService: ChefServiceProtocol
-
 
     // MARK: - Computed
 
-    /// Группировка блюд как в меню
     var groupedDishes: [DishCategory: [Dish]] {
         Dictionary(grouping: dishes, by: { $0.category })
     }
 
-    /// Избранные блюда (НЕ храним отдельно)
     var favoriteDishes: [Dish] {
         dishes.filter { $0.favourite }
     }
 
+    // MARK: - Init
 
-        init(
-            dishService: DishesServiceProtocol = DishesService(),
-            chefService: ChefServiceProtocol = ChefService()
-        ) {
-            self.dishService = dishService
-            self.chefService = chefService
+    init(
+        dishService: DishesServiceProtocol = DishesService(),
+        chefService: ChefServiceProtocol = ChefService()
+    ) {
+        self.dishService = dishService
+        self.chefService = chefService
 
-            self.currentChef = UserDefaults.standard.string(forKey: "currentChef")
+        self.currentChef = UserDefaults.standard.string(forKey: "currentChef")
 
-            if let saved = UserDefaults.standard.string(forKey: UserDefaultsKeys.userRole),
-               let role = UserRole(rawValue: saved) {
-                self.role = role
-            } else {
-                self.role = .user
+        if let saved = UserDefaults.standard.string(forKey: UserDefaultsKeys.userRole),
+           let role = UserRole(rawValue: saved) {
+            self.role = role
+        }
+
+        setupSegmentedAppearance()
+    }
+
+    // MARK: - Appearance
+
+    private func setupSegmentedAppearance() {
+        let appearance = UISegmentedControl.appearance()
+
+        appearance.selectedSegmentTintColor = UIColor(MenuColors.paper)
+
+        appearance.setTitleTextAttributes([
+            .font: UIFont.systemFont(ofSize: 14, weight: .semibold),
+            .foregroundColor: UIColor(MenuColors.text)
+        ], for: .selected)
+
+        appearance.setTitleTextAttributes([
+            .font: UIFont.systemFont(ofSize: 14, weight: .medium),
+            .foregroundColor: UIColor(MenuColors.secondary)
+        ], for: .normal)
+    }
+
+    // MARK: - Auto refresh (каждые 5 сек, ТИХО)
+
+    func startAutoRefresh() {
+        stopAutoRefresh()
+
+        autoRefreshTask = Task {
+            while !Task.isCancelled {
+                try? await Task.sleep(for: .seconds(5))
+                await silentReloadAll()
             }
-            let appearance = UISegmentedControl.appearance()
-
-            appearance.selectedSegmentTintColor = UIColor(MenuColors.paper)
-
-            appearance.setTitleTextAttributes([
-                .font: UIFont.systemFont(ofSize: 14, weight: .semibold),
-                .foregroundColor: UIColor(MenuColors.text)
-            ], for: .selected)
-
-            appearance.setTitleTextAttributes([
-                .font: UIFont.systemFont(ofSize: 14, weight: .medium),
-                .foregroundColor: UIColor(MenuColors.secondary)
-            ], for: .normal)
         }
+    }
 
-        func applySecret(_ secret: String) {
-            self.role = roleFromSecret(secret)
-        }
+    func stopAutoRefresh() {
+        autoRefreshTask?.cancel()
+        autoRefreshTask = nil
+    }
 
+    // MARK: - First load (с индикатором)
 
-
-
-    // MARK: - Public Methods
-
-	func loadAllDishes() async {
-		isLoading = true
-		errorMessage = nil
-		
-		let result = await dishService.getDishes()
-		switch result {
-		case .success(let response):
-			dishes = response.data
-			isLoading = false
-		case .networkError(let error):
-			errorMessage = error
-			Logger.log(level: .warning, "Error while fetch all dishes")
-			isLoading = false
-		}
-	}
-
-    // MARK: - Update (МГНОВЕННО)
-
-    func updateDish(id: Int, newName: String, newCategory: DishCategory) async {
-        guard role.permissions.canEditDish else { return }
+    func loadAllDishes() async {
         isLoading = true
         errorMessage = nil
 
-        let request = UpdateDishRequest(id: id, text: newName, category: newCategory)
-		let result = await dishService.updateDish(request: request)
-		switch result {
-		case .success:
-			if let index = dishes.firstIndex(where: { $0.id == id }) {
-				dishes[index].name = newName
-                dishes[index].category=newCategory
-			}
-			isLoading = false
-		case .networkError(let error):
-			errorMessage = error
-			isLoading = false
-			Logger.log(level: .warning, "Error while update dish \(error)")
-		}
+        let result = await dishService.getDishes()
+        if case .success(let response) = result {
+            dishes = response.data
+        }
+
+        isLoading = false
     }
 
-    // MARK: - Favorite (МГНОВЕННО)
+    func loadCurrentChef() async {
+        let result = await chefService.current()
+        if case .success(let chef) = result {
+            currentChef = chef.name
+            UserDefaults.standard.set(chef.name, forKey: "currentChef")
+        }
+    }
+
+    // MARK: - Silent reload (блюда + повар)
+
+    /// ТИХОЕ обновление — без индикаторов
+    func silentReloadAll() async {
+        async let dishesTask = dishService.getDishes()
+        async let chefTask = chefService.current()
+
+        let dishesResult = await dishesTask
+        let chefResult = await chefTask
+
+        if case .success(let response) = dishesResult {
+            dishes = response.data
+        }
+
+        if case .success(let chef) = chefResult {
+            if currentChef != chef.name {
+                currentChef = chef.name
+                UserDefaults.standard.set(chef.name, forKey: "currentChef")
+            }
+        }
+    }
+
+    // MARK: - Actions
 
     func toggleFavorite(dishId: Int) async {
-        guard role.permissions.canToggleFavorite else { return }
-        guard let index = dishes.firstIndex(where: { $0.id == dishId }) else { return }
+        guard role.permissions.canToggleFavorite,
+              let index = dishes.firstIndex(where: { $0.id == dishId }) else { return }
 
         let newValue = !dishes[index].favourite
         dishes[index].favourite = newValue
@@ -134,74 +155,53 @@ class MenuViewModel {
             ? await dishService.mark(request: MarkDishRequest(ids: [dishId]))
             : await dishService.unmark(request: UnMarkDishRequest(ids: [dishId]))
 
-        switch result {
-        case .success:
-            break
-        case .networkError(let error):
+        if case .networkError = result {
             dishes[index].favourite.toggle()
-            errorMessage = error
         }
+
+        await silentReloadAll()
     }
-
-
-    // MARK: - Delete
 
     func deleteDish(id: Int) async {
-
         guard role.permissions.canDeleteDish else { return }
-        isLoading = true
-        errorMessage = nil
 
-        let result = await dishService.delete(request: DeleteDishRequest(id:id))
-		switch result {
-		case .success:
+        let result = await dishService.delete(request: DeleteDishRequest(id: id))
+        if case .success = result {
             dishes.removeAll { $0.id == id }
-			isLoading = false
-		case .networkError(let error):
-			errorMessage = error
-			isLoading = false
-		}
+        }
 
+        await silentReloadAll()
     }
 
-	func deleteAllDishes() async {
+    func deleteAllDishes() async {
+        guard role.permissions.canDeleteDish else { return }
 
-		guard role.permissions.canDeleteDish else { return }
-		isLoading = true
-		errorMessage = nil
-		let result = await dishService.deleteAll()
-		switch result {
-		case .success:
-			dishes = []
-			isLoading = false
-		case .networkError(let error):
-			errorMessage = error
-			isLoading = false
-		}
+        let result = await dishService.deleteAll()
+        if case .success = result {
+            dishes = []
+        }
 
-	}
+        await silentReloadAll()
+    }
 
-    func loadCurrentChef() async {
-        isLoading = true
-        errorMessage = nil
+    func updateDish(id: Int, newName: String, newCategory: DishCategory) async {
+        guard role.permissions.canEditDish else { return }
 
-        let result = await chefService.current()
+        let request = UpdateDishRequest(
+            id: id,
+            text: newName,
+            category: newCategory
+        )
 
-        switch result {
-        case .success(let chef):
-            currentChef = chef.name
-            UserDefaults.standard.set(chef.name, forKey: "currentChef")
-            isLoading = false
-
-        case .networkError(let error):
-            currentChef = nil
-            errorMessage = error
-            isLoading = false
-
-            Logger.log(level: .warning, "Error while fetch chef: \(error)")
+        let result = await dishService.updateDish(request: request)
+        if case .success = result,
+           let index = dishes.firstIndex(where: { $0.id == id }) {
+            dishes[index].name = newName
+            dishes[index].category = newCategory
         }
     }
 
-
-
+    func applySecret(_ secret: String) {
+        self.role = roleFromSecret(secret)
+    }
 }

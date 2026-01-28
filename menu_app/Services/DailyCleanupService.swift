@@ -34,10 +34,7 @@ class DailyCleanupService {
         
         // Удаляем предыдущие уведомления
         center.removePendingNotificationRequests(withIdentifiers: ["dailyCleanup"])
-        
-        // Создаем триггер на 3:00 МСК (00:00 UTC, так как МСК = UTC+3, но нужно проверить)
-        // На самом деле 3:00 МСК = 00:00 UTC в зимнее время или 23:00 UTC в летнее
-        // Для простоты используем 00:00 UTC (3:00 МСК зимой)
+
         var dateComponents = DateComponents()
         dateComponents.hour = 0  // 00:00 UTC = 3:00 МСК (зимой)
         dateComponents.minute = 0
