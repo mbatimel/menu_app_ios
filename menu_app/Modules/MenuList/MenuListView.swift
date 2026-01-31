@@ -63,7 +63,7 @@ struct MenuListView: View {
         .toolbar {
 
             ToolbarItem(placement: .navigationBarLeading) {
-                if viewModel.role.permissions.canDeleteDish {
+                if viewModel.role.permissions.canChangeChef {
                     Button {
                         viewModel.showingSettings = true
                     } label: {
@@ -113,16 +113,6 @@ struct MenuListView: View {
         ) {
             NavigationStack {
                 SettingsView(menuViewModel: viewModel)
-
-
-
-
-
-
-
-
-
-
             }
         }
         .sheet(item: $viewModel.editingDish) { selectedDish in

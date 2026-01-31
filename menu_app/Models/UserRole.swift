@@ -17,6 +17,7 @@ struct Permissions {
     let canEditDish: Bool
     let canDeleteDish: Bool
     let canToggleFavorite: Bool
+    let canChangeChef: Bool
 }
 
 extension UserRole {
@@ -27,21 +28,24 @@ extension UserRole {
                 canCreateDish: true,
                 canEditDish: true,
                 canDeleteDish: true,
-                canToggleFavorite: true
+                canToggleFavorite: true,
+                canChangeChef: true
             )
         case .chef:
             return Permissions(
                 canCreateDish: true,
                 canEditDish: true,
                 canDeleteDish: true,
-                canToggleFavorite: false
+                canToggleFavorite: false,
+                canChangeChef: true
             )
         case .user:
             return Permissions(
                 canCreateDish: true,
                 canEditDish: true,
                 canDeleteDish: true,
-                canToggleFavorite: true
+                canToggleFavorite: true,
+                canChangeChef: false
             )
         }
     }

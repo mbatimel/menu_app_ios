@@ -122,7 +122,6 @@ final class MenuViewModel {
 
     // MARK: - Silent reload (блюда + повар)
 
-    /// ТИХОЕ обновление — без индикаторов
     func silentReloadAll() async {
         async let dishesTask = dishService.getDishes()
         async let chefTask = chefService.current()
