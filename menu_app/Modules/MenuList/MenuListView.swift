@@ -194,21 +194,21 @@ struct MenuListView: View {
         ForEach(dishes) { dish in
             DishRowView(
                 dish: dish,
-                isSelected: false,
-                canToggleFavorite: viewModel.role.permissions.canToggleFavorite,
                 canEdit: viewModel.role.permissions.canEditDish,
                 canDelete: viewModel.role.permissions.canDeleteDish,
-                onToggleSelection: {},
                 onToggleFavorite: {
-                    Task { await viewModel.toggleFavorite(dishId: dish.id) }
+                    Task {
+                        await viewModel.toggleFavorite(dishId: dish.id)
+                    }
                 },
                 onEdit: {
                     viewModel.editingDish = dish
                 },
                 onDelete: {
-                    Task { await viewModel.deleteDish(id: dish.id) }
-                },
-                index: 0
+                    Task {
+                        await viewModel.deleteDish(id: dish.id)
+                    }
+                }
             )
         }
     }

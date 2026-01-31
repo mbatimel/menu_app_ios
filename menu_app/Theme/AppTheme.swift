@@ -15,4 +15,5 @@ enum MenuColors {
     static let section = Color(red: 0.64, green: 0.49, blue: 0.26)     // заголовки
     static let divider = Color(red: 0.80, green: 0.72, blue: 0.60)
     static let destructive = Color(red: 0.65, green: 0.20, blue: 0.18)
+    static let paperSelected = Color(red: 0.93, green: 0.90, blue: 0.86)
 }
