@@ -38,9 +38,9 @@ extension UserRole {
             )
         case .user:
             return Permissions(
-                canCreateDish: false,
-                canEditDish: false,
-                canDeleteDish: false,
+                canCreateDish: true,
+                canEditDish: true,
+                canDeleteDish: true,
                 canToggleFavorite: true
             )
         }
