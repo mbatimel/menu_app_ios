@@ -16,27 +16,28 @@ struct MenuApp: App {
     }
     
     private func checkAndPerformCleanupIfNeeded() {
-        // Проверяем, нужно ли выполнить очистку
-        let lastCleanupDate = UserDefaults.standard.object(forKey: "lastCleanupDate") as? Date
+        let calendar = Calendar(identifier: .gregorian)
         let now = Date()
-        
-        // Если последняя очистка была более 24 часов назад и сейчас после 3:00 МСК
-        if let lastDate = lastCleanupDate {
-            let timeSinceLastCleanup = now.timeIntervalSince(lastDate)
-            if timeSinceLastCleanup >= 24 * 60 * 60 { // 24 часа
-                // Проверяем время (3:00 МСК = 00:00 UTC зимой)
-                let calendar = Calendar.current
-                let hour = calendar.component(.hour, from: now)
-                if hour >= 0 && hour < 1 { // Между 00:00 и 01:00 UTC
-                    Task {
-                        await dailyCleanupService.performCleanup()
-                        UserDefaults.standard.set(now, forKey: "lastCleanupDate")
-                    }
-                }
+
+        let lastCleanup = UserDefaults.standard.object(forKey: "lastCleanupDate") as? Date
+
+        // Берём сегодняшнюю 3:00 МСК
+        var components = calendar.dateComponents([.year, .month, .day], from: now)
+        components.hour = 3
+        components.minute = 0
+
+        guard let todayCleanupTime = calendar.date(from: components) else { return }
+
+        // Если сейчас после 3:00 и ещё не чистили сегодня
+        if now >= todayCleanupTime {
+            if let last = lastCleanup, calendar.isDate(last, inSameDayAs: now) {
+                return
             }
-        } else {
-            // Первый запуск - сохраняем текущую дату
-            UserDefaults.standard.set(now, forKey: "lastCleanupDate")
+
+            Task {
+                await dailyCleanupService.performCleanup()
+                UserDefaults.standard.set(now, forKey: "lastCleanupDate")
+            }
         }
     }
 }
