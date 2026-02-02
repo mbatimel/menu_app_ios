@@ -9,50 +9,39 @@ struct MenuListView: View {
             PaperBackground()
 
             VStack(spacing: 0) {
+
                 chefView
 
-                Picker("", selection: $viewModel.selectedTab) {
-                    Text("Все блюда").tag(0)
-                    Text("Избранное").tag(1)
-                }
-                .pickerStyle(.segmented)
-                .padding(4)
-                .background(
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(MenuColors.paper)
-                        .shadow(color: .black.opacity(0.05), radius: 3)
-                )
-                .padding(.horizontal)
-                .tint(MenuColors.section)
-
+                MenuToggle(selection: $viewModel.selectedTab)
+                    .padding(.top, 6)
+                    .padding(.bottom, 4)
 
                 if viewModel.isLoading {
                     Spacer()
                     ProgressView()
                     Spacer()
                 } else {
-                    List {
-                        groupedList(
-                            viewModel.selectedTab == 0
-                            ? viewModel.groupedDishes
-                            : Dictionary(
-                                grouping: viewModel.favoriteDishes,
-                                by: { $0.category }
+                    ZStack {
+                        if viewModel.selectedTab == 0 {
+                            menuList(viewModel.groupedDishes)
+                                .transition(.asymmetric(
+                                    insertion: .move(edge: .leading).combined(with: .opacity),
+                                    removal: .opacity
+                                ))
+                        } else {
+                            menuList(
+                                Dictionary(
+                                    grouping: viewModel.favoriteDishes,
+                                    by: { $0.category }
+                                )
                             )
-                        )
+                            .transition(.asymmetric(
+                                insertion: .move(edge: .trailing).combined(with: .opacity),
+                                removal: .opacity
+                            ))
+                        }
                     }
-                    .listStyle(.plain)
-                    .scrollContentBackground(.hidden)
-                    .refreshable {
-                        await viewModel.silentReloadAll()
-                    }
-                    .onAppear {
-                        viewModel.startAutoRefresh()
-                    }
-                    .onDisappear {
-                        viewModel.stopAutoRefresh()
-                    }
-
+                    .animation(.easeInOut(duration: 0.3), value: viewModel.selectedTab)
                 }
             }
         }
@@ -81,6 +70,7 @@ struct MenuListView: View {
                     }
                     .foregroundColor(MenuColors.section)
                 }
+
                 if viewModel.role.permissions.canDeleteDish {
                     Menu {
                         Button("Удалить все", role: .destructive) {
@@ -90,27 +80,17 @@ struct MenuListView: View {
                         }
                     } label: {
                         Image(systemName: "ellipsis.circle")
+                            .foregroundColor(MenuColors.section)
                     }
                 }
             }
         }
-        .sheet(
-            isPresented: $viewModel.showingCreateDish,
-            onDismiss: {
-                Task {
-                    await viewModel.loadCurrentChef()
-                    await viewModel.loadAllDishes()
-                    
-                }
-            }
-        ) {
+        .sheet(isPresented: $viewModel.showingCreateDish) {
             NavigationStack {
                 CreateDishView()
             }
         }
-        .sheet(
-            isPresented: $viewModel.showingSettings
-        ) {
+        .sheet(isPresented: $viewModel.showingSettings) {
             NavigationStack {
                 SettingsView(menuViewModel: viewModel)
             }
@@ -129,24 +109,26 @@ struct MenuListView: View {
             await viewModel.loadCurrentChef()
             await viewModel.loadAllDishes()
         }
+        .onAppear {
+            viewModel.startAutoRefresh()
+        }
+        .onDisappear {
+            viewModel.stopAutoRefresh()
+        }
     }
 
- 
-
-    // MARK: - Chef & Date Header
+    // MARK: - Chef header
 
     @ViewBuilder
     private var chefView: some View {
         if let chef = viewModel.currentChef {
             HStack {
-                
                 Text("Шеф-повар: \(chef)")
                     .font(.system(size: 15, weight: .semibold, design: .serif))
                     .foregroundColor(MenuColors.text)
 
                 Spacer()
 
-                
                 Text(formattedDate())
                     .font(.system(size: 14, weight: .medium, design: .serif))
                     .foregroundColor(MenuColors.secondary)
@@ -156,21 +138,35 @@ struct MenuListView: View {
         }
     }
 
+    // MARK: - Menu List Wrapper
 
-    // MARK: - List
+    private func menuList(_ groups: [DishCategory: [Dish]]) -> some View {
+        MenuPaperContainer {
+            List {
+                groupedList(groups)
+            }
+            .listStyle(.plain)
+            .scrollContentBackground(.hidden)
+            .refreshable {
+                await viewModel.silentReloadAll()
+            }
+        }
+    }
+
+    // MARK: - Grouped List
 
     @ViewBuilder
     private func groupedList(_ groups: [DishCategory: [Dish]]) -> some View {
         ForEach(DishCategory.allCases, id: \.self) { category in
             if let dishes = groups[category], !dishes.isEmpty {
-
                 Section {
                     dishList(dishes)
                 } header: {
                     VStack(spacing: 6) {
-                        Text(category.displayName)
+                        Text(category.displayName.uppercased())
                             .font(.system(size: 15, weight: .semibold, design: .serif))
                             .foregroundColor(MenuColors.section)
+                            .tracking(1)
 
                         DecorativeDivider()
                     }
@@ -202,7 +198,8 @@ struct MenuListView: View {
             )
         }
     }
-    // MARK: - Date formatter (RU)
+
+    // MARK: - Date formatter
 
     private func formattedDate() -> String {
         let formatter = DateFormatter()
@@ -211,5 +208,4 @@ struct MenuListView: View {
         formatter.timeStyle = .none
         return formatter.string(from: Date())
     }
-
 }
