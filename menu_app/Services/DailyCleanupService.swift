@@ -4,6 +4,22 @@ import UserNotifications
 class DailyCleanupService {
 	let chefService: ChefServiceProtocol
 	let dishService: DishesServiceProtocol
+
+    static let notificationId = "dailyCleanup"
+    private static let lastCleanupKey = "lastCleanupDate"
+
+    private let cleanupHour = 0
+    private let cleanupMinute = 0
+
+    private var cleanupTimeZone: TimeZone {
+        .current
+    }
+
+    private var cleanupCalendar: Calendar {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = cleanupTimeZone
+        return calendar
+    }
 	
 	init(
 		chefService: ChefServiceProtocol = ChefService(),
@@ -33,11 +49,12 @@ class DailyCleanupService {
         let center = UNUserNotificationCenter.current()
         
         // Удаляем предыдущие уведомления
-        center.removePendingNotificationRequests(withIdentifiers: ["dailyCleanup"])
+        center.removePendingNotificationRequests(withIdentifiers: [Self.notificationId])
 
         var dateComponents = DateComponents()
-        dateComponents.hour = 0  // 00:00 UTC = 3:00 МСК (зимой)
-        dateComponents.minute = 0
+        dateComponents.hour = cleanupHour
+        dateComponents.minute = cleanupMinute
+        dateComponents.timeZone = cleanupTimeZone
         
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
         
@@ -46,7 +63,11 @@ class DailyCleanupService {
         content.body = "Выполняется ежедневная очистка меню"
         content.sound = .default
         
-        let request = UNNotificationRequest(identifier: "dailyCleanup", content: content, trigger: trigger)
+        let request = UNNotificationRequest(
+            identifier: Self.notificationId,
+            content: content,
+            trigger: trigger
+        )
         
         center.add(request) { error in
         }
@@ -55,11 +76,64 @@ class DailyCleanupService {
         center.delegate = NotificationDelegate.shared
     }
     
-    func performCleanup() async {
-		async let _ = chefService.delete()
-		async let _ = dishService.deleteAll()
+    func checkAndPerformCleanupIfNeeded(now: Date = Date()) async {
+        guard shouldPerformCleanup(now: now) else { return }
+        let cleaned = await performCleanup()
+        if cleaned {
+            UserDefaults.standard.set(now, forKey: Self.lastCleanupKey)
+        }
+    }
 
-		UserDefaults.standard.removeObject(forKey: "currentChef")
+    @discardableResult
+    func performCleanup() async -> Bool {
+		async let chefResult = chefService.delete()
+		async let dishesResult = dishService.deleteAll()
+
+        let dishes = await dishesResult
+        let chef = await chefResult
+
+        let dishesSuccess: Bool
+        switch dishes {
+        case .success:
+            dishesSuccess = true
+        case .networkError:
+            dishesSuccess = false
+        }
+
+        let chefSuccess: Bool
+        switch chef {
+        case .success:
+            chefSuccess = true
+        case .networkError:
+            chefSuccess = false
+        }
+
+        if chefSuccess {
+            UserDefaults.standard.removeObject(forKey: "currentChef")
+        }
+
+        return dishesSuccess
+    }
+
+    private func shouldPerformCleanup(now: Date) -> Bool {
+        let calendar = cleanupCalendar
+        guard let cleanupTime = calendar.date(
+            bySettingHour: cleanupHour,
+            minute: cleanupMinute,
+            second: 0,
+            of: now
+        ) else {
+            return false
+        }
+
+        guard now >= cleanupTime else { return false }
+
+        if let lastCleanup = UserDefaults.standard.object(forKey: Self.lastCleanupKey) as? Date,
+           calendar.isDate(lastCleanup, inSameDayAs: now) {
+            return false
+        }
+
+        return true
     }
 }
 
@@ -68,18 +142,22 @@ class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
 	let dailyCleanupService = DailyCleanupService()
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        if notification.request.identifier == DailyCleanupService.notificationId {
+            Task {
+                await dailyCleanupService.checkAndPerformCleanupIfNeeded()
+            }
+        }
         // Показываем уведомление даже когда приложение открыто
         completionHandler([.banner, .sound])
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        if response.notification.request.identifier == "dailyCleanup" {
+        if response.notification.request.identifier == DailyCleanupService.notificationId {
             // Выполняем очистку при нажатии на уведомление
             Task {
-                await dailyCleanupService.performCleanup()
+                await dailyCleanupService.checkAndPerformCleanupIfNeeded()
             }
         }
         completionHandler()
     }
 }
-
