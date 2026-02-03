@@ -1,0 +1,37 @@
+{
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Modules/Auth/RootView.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/RootView.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/RootView.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/RootView.dia",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/RootView.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/RootView.swiftdeps"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Modules/CreateDish/CreateDishView.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/CreateDishView.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/CreateDishView.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/CreateDishView.dia",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/CreateDishView.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/CreateDishView.swiftdeps"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Modules/CreateDish/CreateDishViewModel.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/CreateDishViewModel.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/CreateDishViewModel.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/CreateDishViewModel.dia",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/CreateDishViewModel.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/CreateDishViewModel.swiftdeps"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Modules/EditDish/EditDishView.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/EditDishView.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/EditDishView.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/EditDishView.dia",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/EditDishView.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/EditDishView.swiftdeps"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Modules/EditDish/EditDishViewModel.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/EditDishViewModel.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/EditDishViewModel.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/EditDishViewModel.dia",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/EditDishViewModel.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/EditDishViewModel.swiftdeps"
+  }
+}

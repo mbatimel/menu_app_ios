@@ -1,0 +1,37 @@
+{
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Networking/Requester/API/API.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/API.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/API.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/API.dia",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/API.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/API.swiftdeps"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Networking/Requester/Endpoints/ChefEndpoint.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/ChefEndpoint.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/ChefEndpoint.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/ChefEndpoint.dia",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/ChefEndpoint.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/ChefEndpoint.swiftdeps"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Networking/Requester/Endpoints/DishesEndpoint.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/DishesEndpoint.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/DishesEndpoint.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/DishesEndpoint.dia",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/DishesEndpoint.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/DishesEndpoint.swiftdeps"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Networking/Requester/Endpoints/Endpoint.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/Endpoint.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/Endpoint.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/Endpoint.dia",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/Endpoint.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/Endpoint.swiftdeps"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Networking/Requester/RequestComponents/RequestEncoder.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/RequestEncoder.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/RequestEncoder.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/RequestEncoder.dia",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/RequestEncoder.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/RequestEncoder.swiftdeps"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Theme/MenuPaperContainer.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/MenuPaperContainer.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/MenuPaperContainer.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/MenuPaperContainer.dia",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/MenuPaperContainer.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/MenuPaperContainer.swiftdeps"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Theme/MenuTextStyle.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/MenuTextStyle.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/MenuTextStyle.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/MenuTextStyle.dia",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/MenuTextStyle.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/MenuTextStyle.swiftdeps"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Theme/MenuToggle.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/MenuToggle.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/MenuToggle.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/MenuToggle.dia",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/MenuToggle.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/MenuToggle.swiftdeps"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Theme/PaperBackground.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/PaperBackground.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/PaperBackground.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/PaperBackground.dia",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/PaperBackground.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/PaperBackground.swiftdeps"
+  }
+}

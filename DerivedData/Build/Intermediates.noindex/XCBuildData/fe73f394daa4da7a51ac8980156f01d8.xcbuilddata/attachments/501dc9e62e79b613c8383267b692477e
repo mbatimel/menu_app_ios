@@ -1,0 +1,489 @@
+{
+  "" : {
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/menu_app-primary.dia",
+    "emit-module-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/menu_app-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/menu_app-primary-emit-module.dia",
+    "pch" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/menu_app-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/menu_app-primary.swiftdeps"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/GeneratedAssetSymbols.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/GeneratedAssetSymbols.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/GeneratedAssetSymbols.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/GeneratedAssetSymbols.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/GeneratedAssetSymbols.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/GeneratedAssetSymbols~partial.swiftmodule"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/ContentView.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/ContentView.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/ContentView.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/ContentView.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/ContentView.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/ContentView.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/ContentView.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/ContentView.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/ContentView~partial.swiftmodule"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/MenuApp.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuApp.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuApp.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuApp.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuApp.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuApp.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuApp.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuApp.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuApp~partial.swiftmodule"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Models/Chef.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Chef.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Chef.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Chef.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Chef.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Chef.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Chef.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Chef.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Chef~partial.swiftmodule"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Models/ChefDTO.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/ChefDTO.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/ChefDTO.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/ChefDTO.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/ChefDTO.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/ChefDTO.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/ChefDTO.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/ChefDTO.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/ChefDTO~partial.swiftmodule"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Models/CreateChefRequest.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/CreateChefRequest.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/CreateChefRequest.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/CreateChefRequest.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/CreateChefRequest.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/CreateChefRequest.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/CreateChefRequest.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/CreateChefRequest.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/CreateChefRequest~partial.swiftmodule"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Models/CreateDishRequest.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/CreateDishRequest.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/CreateDishRequest.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/CreateDishRequest.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/CreateDishRequest.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/CreateDishRequest.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/CreateDishRequest.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/CreateDishRequest.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/CreateDishRequest~partial.swiftmodule"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Models/DeleteDishRequest.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DeleteDishRequest.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DeleteDishRequest.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DeleteDishRequest.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DeleteDishRequest.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DeleteDishRequest.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DeleteDishRequest.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DeleteDishRequest.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DeleteDishRequest~partial.swiftmodule"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Models/Dish.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Dish.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Dish.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Dish.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Dish.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Dish.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Dish.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Dish.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Dish~partial.swiftmodule"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Models/DishCategory.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DishCategory.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DishCategory.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DishCategory.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DishCategory.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DishCategory.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DishCategory.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DishCategory.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DishCategory~partial.swiftmodule"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Models/DishDTO.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DishDTO.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DishDTO.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DishDTO.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DishDTO.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DishDTO.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DishDTO.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DishDTO.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DishDTO~partial.swiftmodule"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Models/EmptyDTO.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/EmptyDTO.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/EmptyDTO.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/EmptyDTO.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/EmptyDTO.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/EmptyDTO.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/EmptyDTO.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/EmptyDTO.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/EmptyDTO~partial.swiftmodule"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Models/MarkDishRequest.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MarkDishRequest.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MarkDishRequest.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MarkDishRequest.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MarkDishRequest.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MarkDishRequest.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MarkDishRequest.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MarkDishRequest.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MarkDishRequest~partial.swiftmodule"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Models/SecretKeys.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/SecretKeys.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/SecretKeys.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/SecretKeys.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/SecretKeys.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/SecretKeys.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/SecretKeys.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/SecretKeys.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/SecretKeys~partial.swiftmodule"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Models/UnMarkDishRequest.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/UnMarkDishRequest.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/UnMarkDishRequest.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/UnMarkDishRequest.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/UnMarkDishRequest.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/UnMarkDishRequest.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/UnMarkDishRequest.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/UnMarkDishRequest.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/UnMarkDishRequest~partial.swiftmodule"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Models/UpdateDishRequest.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/UpdateDishRequest.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/UpdateDishRequest.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/UpdateDishRequest.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/UpdateDishRequest.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/UpdateDishRequest.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/UpdateDishRequest.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/UpdateDishRequest.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/UpdateDishRequest~partial.swiftmodule"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Models/UserRole.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/UserRole.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/UserRole.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/UserRole.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/UserRole.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/UserRole.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/UserRole.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/UserRole.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/UserRole~partial.swiftmodule"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Modules/Auth/RoleKeyView.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/RoleKeyView.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/RoleKeyView.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/RoleKeyView.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/RoleKeyView.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/RoleKeyView.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/RoleKeyView.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/RoleKeyView.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/RoleKeyView~partial.swiftmodule"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Modules/Auth/RootView.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/RootView.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/RootView.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/RootView.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/RootView.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/RootView.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/RootView.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/RootView.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/RootView~partial.swiftmodule"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Modules/CreateDish/CreateDishView.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/CreateDishView.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/CreateDishView.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/CreateDishView.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/CreateDishView.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/CreateDishView.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/CreateDishView.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/CreateDishView.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/CreateDishView~partial.swiftmodule"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Modules/CreateDish/CreateDishViewModel.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/CreateDishViewModel.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/CreateDishViewModel.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/CreateDishViewModel.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/CreateDishViewModel.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/CreateDishViewModel.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/CreateDishViewModel.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/CreateDishViewModel.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/CreateDishViewModel~partial.swiftmodule"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Modules/EditDish/EditDishView.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/EditDishView.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/EditDishView.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/EditDishView.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/EditDishView.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/EditDishView.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/EditDishView.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/EditDishView.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/EditDishView~partial.swiftmodule"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Modules/EditDish/EditDishViewModel.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/EditDishViewModel.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/EditDishViewModel.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/EditDishViewModel.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/EditDishViewModel.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/EditDishViewModel.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/EditDishViewModel.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/EditDishViewModel.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/EditDishViewModel~partial.swiftmodule"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Modules/MenuList/MenuListView.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuListView.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuListView.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuListView.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuListView.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuListView.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuListView.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuListView.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuListView~partial.swiftmodule"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Modules/MenuList/MenuViewModel.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuViewModel.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuViewModel.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuViewModel.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuViewModel.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuViewModel.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuViewModel.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuViewModel.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuViewModel~partial.swiftmodule"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Modules/MenuList/Views/DishRowView.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DishRowView.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DishRowView.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DishRowView.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DishRowView.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DishRowView.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DishRowView.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DishRowView.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DishRowView~partial.swiftmodule"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Modules/Settings/SettingsView.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/SettingsView.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/SettingsView.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/SettingsView.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/SettingsView.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/SettingsView.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/SettingsView.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/SettingsView.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/SettingsView~partial.swiftmodule"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Modules/Settings/SettingsViewModel.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/SettingsViewModel.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/SettingsViewModel.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/SettingsViewModel.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/SettingsViewModel.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/SettingsViewModel.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/SettingsViewModel.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/SettingsViewModel.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/SettingsViewModel~partial.swiftmodule"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Networking/Requester/API/API.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/API.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/API.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/API.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/API.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/API.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/API.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/API.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/API~partial.swiftmodule"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Networking/Requester/Endpoints/ChefEndpoint.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/ChefEndpoint.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/ChefEndpoint.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/ChefEndpoint.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/ChefEndpoint.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/ChefEndpoint.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/ChefEndpoint.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/ChefEndpoint.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/ChefEndpoint~partial.swiftmodule"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Networking/Requester/Endpoints/DishesEndpoint.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DishesEndpoint.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DishesEndpoint.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DishesEndpoint.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DishesEndpoint.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DishesEndpoint.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DishesEndpoint.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DishesEndpoint.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DishesEndpoint~partial.swiftmodule"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Networking/Requester/Endpoints/Endpoint.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Endpoint.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Endpoint.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Endpoint.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Endpoint.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Endpoint.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Endpoint.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Endpoint.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Endpoint~partial.swiftmodule"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Networking/Requester/RequestComponents/RequestEncoder.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/RequestEncoder.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/RequestEncoder.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/RequestEncoder.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/RequestEncoder.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/RequestEncoder.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/RequestEncoder.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/RequestEncoder.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/RequestEncoder~partial.swiftmodule"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Networking/Requester/RequestComponents/RequestMethod.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/RequestMethod.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/RequestMethod.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/RequestMethod.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/RequestMethod.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/RequestMethod.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/RequestMethod.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/RequestMethod.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/RequestMethod~partial.swiftmodule"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Networking/Requester/RequestComponents/Result.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Result.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Result.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Result.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Result.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Result.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Result.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Result.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Result~partial.swiftmodule"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Networking/Requester/RequestExtentions/Encodable + exts.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Encodable + exts.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Encodable + exts.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Encodable + exts.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Encodable + exts.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Encodable + exts.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Encodable + exts.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Encodable + exts.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Encodable + exts~partial.swiftmodule"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Networking/Requester/Requester.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Requester.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Requester.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Requester.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Requester.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Requester.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Requester.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Requester.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Requester~partial.swiftmodule"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Networking/Services/ChefService.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/ChefService.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/ChefService.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/ChefService.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/ChefService.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/ChefService.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/ChefService.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/ChefService.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/ChefService~partial.swiftmodule"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Networking/Services/DishesService.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DishesService.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DishesService.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DishesService.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DishesService.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DishesService.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DishesService.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DishesService.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DishesService~partial.swiftmodule"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Services/DailyCleanupService.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DailyCleanupService.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DailyCleanupService.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DailyCleanupService.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DailyCleanupService.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DailyCleanupService.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DailyCleanupService.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DailyCleanupService.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DailyCleanupService~partial.swiftmodule"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Theme/AppTheme.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/AppTheme.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/AppTheme.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/AppTheme.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/AppTheme.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/AppTheme.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/AppTheme.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/AppTheme.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/AppTheme~partial.swiftmodule"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Theme/DecorativeDivider.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DecorativeDivider.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DecorativeDivider.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DecorativeDivider.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DecorativeDivider.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DecorativeDivider.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DecorativeDivider.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DecorativeDivider.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/DecorativeDivider~partial.swiftmodule"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Theme/FloralCorner.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/FloralCorner.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/FloralCorner.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/FloralCorner.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/FloralCorner.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/FloralCorner.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/FloralCorner.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/FloralCorner.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/FloralCorner~partial.swiftmodule"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Theme/MenuPaperContainer.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuPaperContainer.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuPaperContainer.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuPaperContainer.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuPaperContainer.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuPaperContainer.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuPaperContainer.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuPaperContainer.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuPaperContainer~partial.swiftmodule"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Theme/MenuTextStyle.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuTextStyle.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuTextStyle.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuTextStyle.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuTextStyle.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuTextStyle.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuTextStyle.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuTextStyle.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuTextStyle~partial.swiftmodule"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Theme/MenuToggle.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuToggle.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuToggle.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuToggle.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuToggle.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuToggle.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuToggle.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuToggle.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/MenuToggle~partial.swiftmodule"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Theme/PaperBackground.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/PaperBackground.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/PaperBackground.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/PaperBackground.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/PaperBackground.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/PaperBackground.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/PaperBackground.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/PaperBackground.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/PaperBackground~partial.swiftmodule"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Utility/Logger.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Logger.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Logger.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Logger.dia",
+    "index-unit-output-path" : "/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Logger.o",
+    "llvm-bc" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Logger.bc",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Logger.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Logger.swiftdeps",
+    "swiftmodule" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/x86_64/Logger~partial.swiftmodule"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Modules/MenuList/MenuListView.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/MenuListView.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/MenuListView.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/MenuListView.dia",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/MenuListView.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/MenuListView.swiftdeps"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Modules/MenuList/MenuViewModel.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/MenuViewModel.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/MenuViewModel.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/MenuViewModel.dia",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/MenuViewModel.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/MenuViewModel.swiftdeps"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Modules/MenuList/Views/DishRowView.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/DishRowView.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/DishRowView.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/DishRowView.dia",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/DishRowView.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/DishRowView.swiftdeps"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Modules/Settings/SettingsView.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/SettingsView.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/SettingsView.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/SettingsView.dia",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/SettingsView.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/SettingsView.swiftdeps"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Modules/Settings/SettingsViewModel.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/SettingsViewModel.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/SettingsViewModel.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/SettingsViewModel.dia",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/SettingsViewModel.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/SettingsViewModel.swiftdeps"
+  }
+}

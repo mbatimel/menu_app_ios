@@ -1,0 +1,37 @@
+{
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Models/Dish.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/Dish.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/Dish.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/Dish.dia",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/Dish.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/Dish.swiftdeps"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Models/DishCategory.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/DishCategory.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/DishCategory.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/DishCategory.dia",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/DishCategory.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/DishCategory.swiftdeps"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Models/DishDTO.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/DishDTO.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/DishDTO.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/DishDTO.dia",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/DishDTO.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/DishDTO.swiftdeps"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Models/EmptyDTO.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/EmptyDTO.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/EmptyDTO.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/EmptyDTO.dia",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/EmptyDTO.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/EmptyDTO.swiftdeps"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Models/MarkDishRequest.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/MarkDishRequest.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/MarkDishRequest.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/MarkDishRequest.dia",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/MarkDishRequest.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphonesimulator/menu_app.build/Objects-normal/arm64/MarkDishRequest.swiftdeps"
+  }
+}

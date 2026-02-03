@@ -10,11 +10,19 @@ struct MenuListView: View {
 
             VStack(spacing: 0) {
 
+                Text("Меню")
+                    .font(MenuTextStyle.screenTitle)
+                    .foregroundColor(MenuColors.text)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.horizontal)
+                    .padding(.top, 8)
+
                 chefView
+                    .padding(.top, 2)
 
                 MenuToggle(selection: $viewModel.selectedTab)
-                    .padding(.top, 6)
-                    .padding(.bottom, 4)
+                    .padding(.top, 8)
+                    .padding(.bottom, 6)
 
                 if viewModel.isLoading {
                     Spacer()
@@ -45,8 +53,7 @@ struct MenuListView: View {
                 }
             }
         }
-        .navigationTitle("Меню")
-        .toolbarTitleDisplayMode(.large)
+        .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(MenuColors.background, for: .navigationBar)
         .toolbarColorScheme(.light, for: .navigationBar)
         .toolbar {
@@ -134,7 +141,7 @@ struct MenuListView: View {
                     .foregroundColor(MenuColors.secondary)
             }
             .padding(.horizontal)
-            .padding(.top, 6)
+            .padding(.top, 4)
         }
     }
 
@@ -164,7 +171,7 @@ struct MenuListView: View {
                 } header: {
                     VStack(spacing: 6) {
                         Text(category.displayName.uppercased())
-                            .font(.system(size: 15, weight: .semibold, design: .serif))
+                            .font(MenuTextStyle.sectionHeader)
                             .foregroundColor(MenuColors.section)
                             .tracking(1)
 

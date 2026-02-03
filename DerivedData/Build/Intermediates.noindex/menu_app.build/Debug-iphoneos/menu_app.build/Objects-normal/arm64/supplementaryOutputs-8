@@ -1,0 +1,37 @@
+{
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Networking/Services/DishesService.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/DishesService.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/DishesService.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/DishesService.dia",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/DishesService.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/DishesService.swiftdeps"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Services/DailyCleanupService.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/DailyCleanupService.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/DailyCleanupService.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/DailyCleanupService.dia",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/DailyCleanupService.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/DailyCleanupService.swiftdeps"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Theme/AppTheme.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/AppTheme.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/AppTheme.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/AppTheme.dia",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/AppTheme.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/AppTheme.swiftdeps"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Theme/DecorativeDivider.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/DecorativeDivider.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/DecorativeDivider.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/DecorativeDivider.dia",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/DecorativeDivider.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/DecorativeDivider.swiftdeps"
+  },
+  "/Users/macbook/Desktop/menu_app_ios/menu_app/Theme/FloralCorner.swift" : {
+    "const-values" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/FloralCorner.swiftconstvalues",
+    "dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/FloralCorner.d",
+    "diagnostics" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/FloralCorner.dia",
+    "object" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/FloralCorner.o",
+    "swift-dependencies" : "/Users/macbook/Desktop/menu_app_ios/DerivedData/Build/Intermediates.noindex/menu_app.build/Debug-iphoneos/menu_app.build/Objects-normal/arm64/FloralCorner.swiftdeps"
+  }
+}
