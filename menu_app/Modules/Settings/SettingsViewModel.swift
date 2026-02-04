@@ -28,5 +28,4 @@ final class SettingsViewModel {
             return false
         }
     }
-
 }

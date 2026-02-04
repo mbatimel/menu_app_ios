@@ -16,7 +16,7 @@ struct MenuApp: App {
                     await dailyCleanupService.checkAndPerformCleanupIfNeeded()
                 }
         }
-        .onChange(of: scenePhase) { newPhase in
+        .onChange(of: scenePhase) { _, newPhase in
             if newPhase == .active {
                 Task {
                     await dailyCleanupService.checkAndPerformCleanupIfNeeded()

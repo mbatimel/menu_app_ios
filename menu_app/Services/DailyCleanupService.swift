@@ -9,7 +9,7 @@ class DailyCleanupService {
     private static let lastCleanupKey = "lastCleanupDate"
 
     private let cleanupHour = 0
-    private let cleanupMinute = 0
+    private let cleanupMinute = 5
 
     private var cleanupTimeZone: TimeZone {
         .current
@@ -35,6 +35,7 @@ class DailyCleanupService {
         // Запрашиваем разрешение на уведомления
         center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
             if let error = error {
+                print("Notification authorization error: \(error)")
                 return
             }
             
@@ -161,3 +162,4 @@ class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
         completionHandler()
     }
 }
+
