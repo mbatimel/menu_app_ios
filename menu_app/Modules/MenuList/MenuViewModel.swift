@@ -60,6 +60,7 @@ final class MenuViewModel {
         }
 
         setupSegmentedAppearance()
+        setupCleanupObserver()
     }
 
     // MARK: - Appearance
@@ -203,4 +204,21 @@ final class MenuViewModel {
     func applySecret(_ secret: String) {
         self.role = roleFromSecret(secret)
     }
+    
+    private func setupCleanupObserver() {
+        NotificationCenter.default.addObserver(
+            forName: .dailyCleanupDidFinish,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            guard let self else { return }
+
+            Task {
+                self.dishes = []
+                self.currentChef = nil
+                await self.silentReloadAll()
+            }
+        }
+    }
+
 }
