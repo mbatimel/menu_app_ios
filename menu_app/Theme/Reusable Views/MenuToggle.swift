@@ -15,13 +15,13 @@ struct MenuToggle: View {
             toggleButton(title: "Все блюда", tag: 0)
             toggleButton(title: "Избранное", tag: 1)
         }
-        .padding(4)
+        .padding(MenuSpacing.xs)
         .background(
             RoundedRectangle(cornerRadius: 14)
                 .fill(MenuColors.paper)
                 .shadow(color: .black.opacity(0.05), radius: 4)
         )
-        .padding(.horizontal)
+        .padding(.horizontal, MenuSpacing.xl)
     }
 
     private func toggleButton(title: String, tag: Int) -> some View {
@@ -31,10 +31,10 @@ struct MenuToggle: View {
             }
         } label: {
             Text(title)
-                .font(.system(size: 14, weight: .semibold, design: .serif))
+                .font(Typography.toggleButton)
                 .foregroundColor(selection == tag ? MenuColors.section : MenuColors.secondary)
                 .frame(maxWidth: .infinity)
-                .padding(.vertical, 8)
+                .padding(.vertical, MenuSpacing.md)
                 .background(
                     RoundedRectangle(cornerRadius: 10)
                         .fill(selection == tag ? MenuColors.paperSelected : .clear)

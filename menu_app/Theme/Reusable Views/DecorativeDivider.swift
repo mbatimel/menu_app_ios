@@ -8,21 +8,20 @@ import SwiftUI
 
 struct DecorativeDivider: View {
     var body: some View {
-        HStack(spacing: 12) {
+        HStack(spacing: MenuSpacing.lg) {
             Rectangle()
                 .fill(MenuColors.divider)
                 .frame(height: 1)
 
             Image(systemName: "leaf")
                 .foregroundColor(MenuColors.section)
-                .font(.footnote)
+                .font(Typography.helperFootnote)
 
             Rectangle()
                 .fill(MenuColors.divider)
                 .frame(height: 1)
         }
         .opacity(0.6)
-        .padding(.vertical, 6)
+        .padding(.vertical, MenuSpacing.sm)
     }
 }
-

@@ -3,33 +3,48 @@ import SwiftUI
 struct EditDishView: View {
 
     @State var viewModel: EditDishViewModel
+    let onSaved: () async -> Void
     @Environment(\.dismiss) var dismiss
+
+    init(
+        viewModel: EditDishViewModel,
+        onSaved: @escaping () async -> Void = {}
+    ) {
+        _viewModel = State(initialValue: viewModel)
+        self.onSaved = onSaved
+    }
+
+    private var isSaveDisabled: Bool {
+        viewModel.isSaving
+        || viewModel.selectedDish.name.trimmingCharacters(
+            in: .whitespacesAndNewlines
+        ).isEmpty
+    }
 
     var body: some View {
         Form {
             Section {
-                
-                VStack(alignment: .leading, spacing: 6) {
+                VStack(alignment: .leading, spacing: MenuSpacing.sm) {
                     Text("Название блюда")
-                        .font(.system(size: 13, weight: .semibold, design: .serif))
+                        .font(Typography.fieldLabel)
                         .foregroundStyle(MenuColors.text)
 
                     TextField("", text: $viewModel.selectedDish.name)
                         .foregroundStyle(MenuColors.text)
                         .tint(MenuColors.section)
-                        .font(.system(size: 16, design: .serif))
+                        .font(Typography.fieldValue)
                 }
 
                 
-                VStack(alignment: .leading, spacing: 6) {
+                VStack(alignment: .leading, spacing: MenuSpacing.sm) {
                     Text("Категория")
-                        .font(.system(size: 13, weight: .semibold, design: .serif))
+                        .font(Typography.fieldLabel)
                         .foregroundStyle(MenuColors.text)
 
                     Picker("", selection: $viewModel.selectedDish.category) {
                         ForEach(DishCategory.allCases, id: \.self) { category in
                             Text(category.displayName)
-                                .font(.system(size: 16, design: .serif))
+                                .font(Typography.fieldValue)
                                 .foregroundStyle(MenuColors.text)
                                 .tag(category)
                         }
@@ -39,7 +54,7 @@ struct EditDishView: View {
 
             } header: {
                 Text("Редактировать блюдо")
-                    .font(.system(size: 14, weight: .semibold, design: .serif))
+                    .font(Typography.formSectionHeader)
                     .foregroundStyle(MenuColors.section)
             }
             .listRowBackground(MenuColors.paper)
@@ -58,12 +73,35 @@ struct EditDishView: View {
 
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button("Сохранить") {
-                    viewModel.updateDish()
-                    dismiss()
+                    Task {
+                        let didSave = await viewModel.updateDish()
+                        guard didSave else { return }
+
+                        await onSaved()
+                        dismiss()
+                    }
                 }
+                .disabled(isSaveDisabled)
                 .foregroundStyle(MenuColors.section)
-                .fontWeight(.semibold)
+                .font(Typography.toolbarAction)
             }
         }
+        .alert(
+            "Ошибка",
+            isPresented: Binding(
+                get: { viewModel.errorMessage != nil },
+                set: { isPresented in
+                    if !isPresented {
+                        viewModel.errorMessage = nil
+                    }
+                }
+            ),
+            actions: {
+                Button("OK", role: .cancel) {}
+            },
+            message: {
+                Text(viewModel.errorMessage ?? "")
+            }
+        )
     }
 }

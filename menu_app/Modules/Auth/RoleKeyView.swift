@@ -4,7 +4,6 @@ struct RoleKeyView: View {
 
     @State private var secret: String = ""
     @State private var error: String?
-    @State private var isDone = false
 
     @State var viewModel: MenuViewModel
 
@@ -25,22 +24,22 @@ struct RoleKeyView: View {
                 VStack {
                     Spacer()
 
-                    VStack(spacing: 20) {
+                    VStack(spacing: MenuSpacing.xxl) {
                         Image(systemName: "lock.shield")
-                            .font(.system(size: 44))
+                            .font(Typography.authIcon)
                             .foregroundStyle(.tint)
 
                         Text("Доступ к меню")
-                            .font(.title2.bold())
+                            .font(Typography.authTitle)
 
                         Text("Введите ключ доступа для продолжения")
-                            .font(.footnote)
+                            .font(Typography.helperFootnote)
                             .foregroundColor(.secondary)
                             .multilineTextAlignment(.center)
 
                         SecureField("Ключ доступа", text: $secret)
                             .textContentType(.password)
-                            .padding()
+                            .padding(MenuSpacing.xl)
                             .background(
                                 RoundedRectangle(cornerRadius: 12)
                                     .fill(Color(.secondarySystemBackground))
@@ -48,7 +47,7 @@ struct RoleKeyView: View {
 
                         if let error {
                             Text(error)
-                                .font(.footnote)
+                                .font(Typography.helperFootnote)
                                 .foregroundColor(.red)
                                 .transition(.opacity)
                         }
@@ -58,24 +57,21 @@ struct RoleKeyView: View {
                         } label: {
                             Text("Продолжить")
                                 .frame(maxWidth: .infinity)
-                                .padding()
+                                .padding(MenuSpacing.xl)
                         }
                         .buttonStyle(.borderedProminent)
                         .controlSize(.large)
                     }
-                    .padding(24)
+                    .padding(MenuSpacing.xxxl)
                     .background(
                         RoundedRectangle(cornerRadius: 20)
                             .fill(Color(.systemBackground))
                             .shadow(color: .black.opacity(0.1), radius: 12)
                     )
-                    .padding(.horizontal, 24)
+                    .padding(.horizontal, MenuSpacing.xxxl)
 
                     Spacer()
                 }
-            }
-            .navigationDestination(isPresented: $isDone) {
-                MenuListView(viewModel: viewModel)
             }
         }
     }
@@ -93,6 +89,5 @@ struct RoleKeyView: View {
         }
 
         viewModel.applySecret(secret)
-        isDone = true
     }
 }

@@ -1,20 +1,50 @@
 import Foundation
 
+@MainActor
 @Observable
 final class EditDishViewModel {
-    var errorMessage: String? = nil
+    var errorMessage: String?
+    var isSaving = false
     var selectedDish: Dish
 
-    private unowned let menuViewModel: MenuViewModel
+    private let dishService: DishesServiceProtocol
 
-    init(menuViewModel: MenuViewModel, selectedDish: Dish) {
-        self.menuViewModel = menuViewModel
+    init(
+        selectedDish: Dish,
+        dishService: DishesServiceProtocol = DishesService()
+    ) {
         self.selectedDish = selectedDish
+        self.dishService = dishService
     }
 
-    func updateDish() {
-        Task {
-            await menuViewModel.updateDish(id: selectedDish.id, newName: selectedDish.name, newCategory: selectedDish.category)
+    @discardableResult
+    func updateDish() async -> Bool {
+        guard !isSaving else { return false }
+
+        let name = selectedDish.name.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !name.isEmpty else {
+            errorMessage = "Название блюда не должно быть пустым"
+            return false
+        }
+
+        isSaving = true
+        defer { isSaving = false }
+
+        let request = UpdateDishRequest(
+            id: selectedDish.id,
+            text: name,
+            category: selectedDish.category
+        )
+
+        let result = await dishService.updateDish(request: request)
+        switch result {
+        case .success:
+            selectedDish.name = name
+            errorMessage = nil
+            return true
+        case .networkError(let error):
+            errorMessage = error
+            return false
         }
     }
 }

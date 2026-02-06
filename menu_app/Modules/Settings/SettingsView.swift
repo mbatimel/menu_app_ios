@@ -3,60 +3,61 @@ import SwiftUI
 struct SettingsView: View {
     @Environment(\.dismiss) var dismiss
 
-    @Bindable var menuViewModel: MenuViewModel
-    @State private var viewModel = SettingsViewModel()
+    @State private var viewModel: SettingsViewModel
+    let onChefChanged: () async -> Void
     @FocusState private var isChefFieldFocused: Bool
 
-    private var hasChef: Bool {
-        if let chef = menuViewModel.currentChef {
-            return !chef.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
-        }
-        return false
+    init(
+        initialChef: String?,
+        onChefChanged: @escaping () async -> Void = {}
+    ) {
+        _viewModel = State(initialValue: SettingsViewModel(currentChef: initialChef))
+        self.onChefChanged = onChefChanged
     }
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 24) {
+            VStack(alignment: .leading, spacing: MenuSpacing.xxxl) {
 
                 // Заголовок секции
                 Text("Шеф-повар")
-                    .font(.system(size: 18, weight: .semibold, design: .serif))
+                    .font(Typography.settingsSectionTitle)
                     .foregroundStyle(MenuColors.section)
 
                 // Карточка
-                VStack(alignment: .leading, spacing: 20) {
+                VStack(alignment: .leading, spacing: MenuSpacing.xxl) {
 
                     // Текущий шеф
-                    VStack(alignment: .leading, spacing: 6) {
+                    VStack(alignment: .leading, spacing: MenuSpacing.sm) {
                         Text("Текущий шеф-повар")
-                            .font(.caption)
+                            .font(Typography.caption)
                             .foregroundStyle(MenuColors.secondary)
 
-                        Text(hasChef ? menuViewModel.currentChef! : "Не задан")
-                            .font(.system(size: 17, weight: .semibold, design: .serif))
+                        Text(viewModel.currentChef ?? "Не задан")
+                            .font(Typography.settingsChefValue)
                             .foregroundStyle(
-                                hasChef ? MenuColors.text : MenuColors.secondary
+                                viewModel.hasChef ? MenuColors.text : MenuColors.secondary
                             )
                     }
 
                     // Поле ввода — только если шефа нет
-                    if !hasChef {
+                    if !viewModel.hasChef {
                         ZStack(alignment: .leading) {
                             if viewModel.chefName.isEmpty {
                                 Text("Имя шеф-повара")
                                     .foregroundStyle(.black)
-                                    .font(.system(size: 16, weight: .medium, design: .serif))
-                                    .padding(.horizontal, 12)
+                                    .font(Typography.fieldValueMedium)
+                                    .padding(.horizontal, MenuSpacing.lg)
                             }
 
                             TextField("", text: $viewModel.chefName)
                                 .focused($isChefFieldFocused)
                                 .foregroundStyle(MenuColors.text)
                                 .tint(MenuColors.section)
-                                .font(.system(size: 16, weight: .medium, design: .serif))
+                                .font(Typography.fieldValueMedium)
                         }
-                        .padding(.vertical, 12)
-                        .padding(.horizontal, 12)
+                        .padding(.vertical, MenuSpacing.lg)
+                        .padding(.horizontal, MenuSpacing.lg)
                         .background(MenuColors.paper)
                         .overlay(
                             RoundedRectangle(cornerRadius: 14)
@@ -73,70 +74,75 @@ struct SettingsView: View {
                     }
 
                     // Кнопки
-                    VStack(spacing: 12) {
+                    VStack(spacing: MenuSpacing.lg) {
 
                         // Создать
                         Button {
                             Task {
-                                await viewModel.createChef()
-                                await menuViewModel.loadCurrentChef()
+                                let didCreate = await viewModel.createChef()
+                                guard didCreate else { return }
+
+                                await onChefChanged()
                                 dismiss()
                             }
                         } label: {
                             Text("Создать шефа")
                                 .frame(maxWidth: .infinity)
-                                .padding(.vertical, 12)
-                                .font(.system(size: 16, weight: .semibold, design: .serif))
+                                .padding(.vertical, MenuSpacing.lg)
+                                .font(Typography.actionPrimary)
                                 .foregroundStyle(
-                                    (!hasChef && !viewModel.chefName.isEmpty)
+                                    (!viewModel.hasChef && !viewModel.chefName.isEmpty)
                                     ? MenuColors.background
                                     : MenuColors.secondary
                                 )
                                 .background(
-                                    (!hasChef && !viewModel.chefName.isEmpty)
+                                    (!viewModel.hasChef && !viewModel.chefName.isEmpty)
                                     ? MenuColors.section
                                     : MenuColors.paper
                                 )
                                 .clipShape(RoundedRectangle(cornerRadius: 14))
                         }
-                        .disabled(hasChef || viewModel.chefName.isEmpty)
+                        .disabled(
+                            viewModel.hasChef
+                            || viewModel.chefName.trimmingCharacters(
+                                in: .whitespacesAndNewlines
+                            ).isEmpty
+                            || viewModel.isProcessing
+                        )
 
                         // Удалить
                         Button {
                             Task {
-                                let success = await viewModel.deleteChef()
-                                if success {
-                                    await MainActor.run {
-                                        menuViewModel.currentChef = nil
-                                    }
-                                }
+                                let didDelete = await viewModel.deleteChef()
+                                guard didDelete else { return }
+                                await onChefChanged()
                             }
                         } label: {
                             Text("Удалить шефа")
                                 .frame(maxWidth: .infinity)
-                                .padding(.vertical, 12)
-                                .font(.system(size: 16, weight: .medium, design: .serif))
+                                .padding(.vertical, MenuSpacing.lg)
+                                .font(Typography.actionSecondary)
                                 .foregroundStyle(
-                                    hasChef ? MenuColors.destructive : MenuColors.secondary
+                                    viewModel.hasChef ? MenuColors.destructive : MenuColors.secondary
                                 )
                                 .background(MenuColors.paper)
                                 .clipShape(RoundedRectangle(cornerRadius: 14))
                         }
-                        .disabled(!hasChef)
+                        .disabled(!viewModel.hasChef || viewModel.isProcessing)
                     }
                 }
-                .padding(20)
+                .padding(MenuSpacing.xxl)
                 .background(MenuColors.paper)
                 .clipShape(RoundedRectangle(cornerRadius: 20))
             }
-            .padding(.horizontal, 16)
-            .padding(.top, 24)
+            .padding(.horizontal, MenuSpacing.xl)
+            .padding(.top, MenuSpacing.xxxl)
         }
         .background(MenuColors.background)
         .toolbar {
             ToolbarItem(placement: .principal) {
                 Text("Настройки")
-                    .font(.system(size: 20, weight: .semibold, design: .serif))
+                    .font(Typography.settingsNavTitle)
                     .foregroundStyle(.black)
             }
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -144,8 +150,28 @@ struct SettingsView: View {
                     dismiss()
                 }
                 .foregroundStyle(MenuColors.section)
-                .fontWeight(.semibold)
+                .font(Typography.toolbarAction)
             }
         }
+        .task {
+            await viewModel.loadCurrentChef()
+        }
+        .alert(
+            "Ошибка",
+            isPresented: Binding(
+                get: { viewModel.errorMessage != nil },
+                set: { isPresented in
+                    if !isPresented {
+                        viewModel.errorMessage = nil
+                    }
+                }
+            ),
+            actions: {
+                Button("OK", role: .cancel) {}
+            },
+            message: {
+                Text(viewModel.errorMessage ?? "")
+            }
+        )
     }
 }

@@ -19,7 +19,7 @@ struct MenuPaperContainer<Content: View>: View {
             MenuColors.paper
 
             content
-                .padding(20)
+                .padding(MenuSpacing.xxl)
 
             // Цветы по углам
             VStack {
@@ -35,10 +35,10 @@ struct MenuPaperContainer<Content: View>: View {
                     FloralCorner(rotation: 180)
                 }
             }
-            .padding(12)
+            .padding(MenuSpacing.lg)
         }
         .cornerRadius(18)
         .shadow(color: .black.opacity(0.08), radius: 12, y: 6)
-        .padding(.horizontal)
+        .padding(.horizontal, MenuSpacing.xl)
     }
 }

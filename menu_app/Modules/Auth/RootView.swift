@@ -2,8 +2,8 @@ import SwiftUI
 
 struct RootView: View {
 
-    @State private var hasRoleSelected =
-        UserDefaults.standard.bool(forKey: UserDefaultsKeys.hasRoleSelected)
+    @AppStorage(UserDefaultsKeys.hasRoleSelected)
+    private var hasRoleSelected = false
 
     @State private var menuViewModel = MenuViewModel()
 
@@ -17,7 +17,7 @@ struct RootView: View {
                 RoleKeyView(viewModel: menuViewModel)
             }
         }
-        .onChange(of: menuViewModel.role) { _ in
+        .onChange(of: menuViewModel.role) { _, _ in
             hasRoleSelected = true
         }
     }

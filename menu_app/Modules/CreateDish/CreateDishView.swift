@@ -4,32 +4,34 @@ struct CreateDishView: View {
 
     @State private var viewModel = CreateDishViewModel()
     @Environment(\.dismiss) var dismiss
+    @FocusState private var isNameFieldFocused: Bool
 
     var body: some View {
         Form {
             Section {
                 
-                VStack(alignment: .leading, spacing: 6) {
+                VStack(alignment: .leading, spacing: MenuSpacing.sm) {
                     Text("Название блюда")
-                        .font(.system(size: 13, weight: .semibold, design: .serif))
+                        .font(Typography.fieldLabel)
                         .foregroundStyle(MenuColors.text)
 
                     TextField("", text: $viewModel.name)
+                        .focused($isNameFieldFocused)
                         .foregroundStyle(MenuColors.text)
                         .tint(MenuColors.section)
-                        .font(.system(size: 16, design: .serif))
+                        .font(Typography.fieldValue)
                 }
 
                 
-                VStack(alignment: .leading, spacing: 6) {
+                VStack(alignment: .leading, spacing: MenuSpacing.sm) {
                     Text("Категория")
-                        .font(.system(size: 13, weight: .semibold, design: .serif))
+                        .font(Typography.fieldLabel)
                         .foregroundStyle(MenuColors.text)
 
                     Picker("", selection: $viewModel.selectedCategory) {
                         ForEach(DishCategory.allCases, id: \.self) { category in
                             Text(category.displayName)
-                                .font(.system(size: 16, design: .serif))
+                                .font(Typography.fieldValue)
                                 .foregroundStyle(MenuColors.text)
                                 .tag(category)
                         }
@@ -39,7 +41,7 @@ struct CreateDishView: View {
 
             } header: {
                 Text("Информация о блюде")
-                    .font(.system(size: 14, weight: .semibold, design: .serif))
+                    .font(Typography.formSectionHeader)
                     .foregroundStyle(MenuColors.section)
             }
             .listRowBackground(MenuColors.paper)
@@ -48,6 +50,10 @@ struct CreateDishView: View {
         .background(MenuColors.background)
         .navigationTitle("Новое блюдо")
         .navigationBarTitleDisplayMode(.inline)
+        .onAppear {
+            isNameFieldFocused = true
+        }
+        .dismissKeyboardOnTap()
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button("Отмена") {
@@ -63,7 +69,7 @@ struct CreateDishView: View {
                 }
                 .disabled(viewModel.name.isEmpty)
                 .foregroundStyle(MenuColors.section)
-                .fontWeight(.semibold)
+                .font(Typography.toolbarAction)
             }
         }
     }

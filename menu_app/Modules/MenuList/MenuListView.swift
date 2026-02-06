@@ -6,23 +6,24 @@ struct MenuListView: View {
 
     var body: some View {
         ZStack {
-            PaperBackground()
+            MenuColors.background
+                .ignoresSafeArea()
 
             VStack(spacing: 0) {
 
                 Text("Меню")
-                    .font(MenuTextStyle.screenTitle)
+                    .font(Typography.screenTitle)
                     .foregroundColor(MenuColors.text)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.horizontal)
-                    .padding(.top, 8)
+                    .padding(.horizontal, MenuSpacing.xl)
+                    .padding(.top, MenuSpacing.md)
 
                 chefView
-                    .padding(.top, 2)
+                    .padding(.top, MenuSpacing.xxs)
 
                 MenuToggle(selection: $viewModel.selectedTab)
-                    .padding(.top, 8)
-                    .padding(.bottom, 6)
+                    .padding(.top, MenuSpacing.md)
+                    .padding(.bottom, MenuSpacing.sm)
 
                 if viewModel.isLoading {
                     Spacer()
@@ -61,7 +62,7 @@ struct MenuListView: View {
             ToolbarItem(placement: .navigationBarLeading) {
                 if viewModel.role.permissions.canChangeChef {
                     Button {
-                        viewModel.showingSettings = true
+                        viewModel.openSettings()
                     } label: {
                         Image(systemName: "gear")
                             .foregroundColor(MenuColors.section)
@@ -73,7 +74,7 @@ struct MenuListView: View {
 
                 if viewModel.role.permissions.canCreateDish {
                     Button("Добавить") {
-                        viewModel.showingCreateDish = true
+                        viewModel.openCreateDish()
                     }
                     .foregroundColor(MenuColors.section)
                 }
@@ -92,24 +93,28 @@ struct MenuListView: View {
                 }
             }
         }
-        .sheet(isPresented: $viewModel.showingCreateDish) {
+        .sheet(item: $viewModel.activeRoute) { route in
             NavigationStack {
-                CreateDishView()
-            }
-        }
-        .sheet(isPresented: $viewModel.showingSettings) {
-            NavigationStack {
-                SettingsView(menuViewModel: viewModel)
-            }
-        }
-        .sheet(item: $viewModel.editingDish) { selectedDish in
-            NavigationStack {
-                EditDishView(
-                    viewModel: EditDishViewModel(
-                        menuViewModel: viewModel,
-                        selectedDish: selectedDish
+                switch route {
+                case .createDish:
+                    CreateDishView()
+                case .settings:
+                    SettingsView(
+                        initialChef: viewModel.currentChef,
+                        onChefChanged: {
+                            await viewModel.loadCurrentChef()
+                        }
                     )
-                )
+                case .editDish(let selectedDish):
+                    EditDishView(
+                        viewModel: EditDishViewModel(
+                            selectedDish: selectedDish
+                        ),
+                        onSaved: {
+                            await viewModel.silentReloadAll(source: "edit-dish-saved")
+                        }
+                    )
+                }
             }
         }
         .task {
@@ -131,17 +136,17 @@ struct MenuListView: View {
         if let chef = viewModel.currentChef {
             HStack {
                 Text("Шеф-повар: \(chef)")
-                    .font(.system(size: 15, weight: .semibold, design: .serif))
+                    .font(Typography.menuChefName)
                     .foregroundColor(MenuColors.text)
 
                 Spacer()
 
                 Text(formattedDate())
-                    .font(.system(size: 14, weight: .medium, design: .serif))
+                    .font(Typography.menuChefDate)
                     .foregroundColor(MenuColors.secondary)
             }
-            .padding(.horizontal)
-            .padding(.top, 4)
+            .padding(.horizontal, MenuSpacing.xl)
+            .padding(.top, MenuSpacing.xs)
         }
     }
 
@@ -155,7 +160,7 @@ struct MenuListView: View {
             .listStyle(.plain)
             .scrollContentBackground(.hidden)
             .refreshable {
-                await viewModel.silentReloadAll()
+                await viewModel.silentReloadAll(source: "pull-to-refresh")
             }
         }
     }
@@ -169,15 +174,15 @@ struct MenuListView: View {
                 Section {
                     dishList(dishes)
                 } header: {
-                    VStack(spacing: 6) {
+                    VStack(spacing: MenuSpacing.sm) {
                         Text(category.displayName.uppercased())
-                            .font(MenuTextStyle.sectionHeader)
+                            .font(Typography.sectionHeader)
                             .foregroundColor(MenuColors.section)
                             .tracking(1)
 
                         DecorativeDivider()
                     }
-                    .padding(.top, 12)
+                    .padding(.top, MenuSpacing.lg)
                 }
             }
         }
@@ -195,7 +200,7 @@ struct MenuListView: View {
                     }
                 },
                 onEdit: {
-                    viewModel.editingDish = dish
+                    viewModel.openEditDish(dish)
                 },
                 onDelete: {
                     Task {

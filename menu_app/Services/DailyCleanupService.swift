@@ -22,11 +22,11 @@ final class DailyCleanupService {
         perform: @escaping () async -> Bool
     ) async {
         let now = Date()
-        print("🟡 [Cleanup] check started from: \(source)")
+        Logger.log(level: .info, "🟡 [Cleanup] check started from: \(source)")
         logDate("Now", now)
 
         guard let cleanupTime = cleanupTime(for: now) else {
-            print("🔴 [Cleanup] failed to calculate cleanupTime")
+            Logger.log(level: .warning, "🔴 [Cleanup] failed to calculate cleanupTime")
             return
         }
 
@@ -34,7 +34,7 @@ final class DailyCleanupService {
 
         // 1️⃣ Время ещё не пришло
         guard now >= cleanupTime else {
-            print("⏳ [Cleanup] skipped: now < cleanupTime")
+            Logger.log(level: .info, "⏳ [Cleanup] skipped: now < cleanupTime")
             return
         }
 
@@ -45,21 +45,21 @@ final class DailyCleanupService {
             logDate("Last cleanup", last)
 
             if calendar.isDate(last, inSameDayAs: now) {
-                print("⛔️ [Cleanup] skipped: already cleaned today")
+                Logger.log(level: .info, "⛔️ [Cleanup] skipped: already cleaned today")
                 return
             }
         } else {
-            print("ℹ️ [Cleanup] no previous cleanup found")
+            Logger.log(level: .info, "ℹ️ [Cleanup] no previous cleanup found")
         }
 
         // 3️⃣ Запускаем очистку
-        print("🧹 [Cleanup] STARTING cleanup")
+        Logger.log(level: .info, "🧹 [Cleanup] STARTING cleanup")
 
         let success = await perform()
 
         if success {
             UserDefaults.standard.set(now, forKey: lastCleanupKey)
-            print("✅ [Cleanup] FINISHED successfully")
+            Logger.log(level: .info, "✅ [Cleanup] FINISHED successfully")
 
             DispatchQueue.main.async {
                 NotificationCenter.default.post(
@@ -68,7 +68,7 @@ final class DailyCleanupService {
                 )
             }
         } else {
-            print("❌ [Cleanup] FAILED")
+            Logger.log(level: .warning, "❌ [Cleanup] FAILED")
         }
     }
 
@@ -87,6 +87,10 @@ final class DailyCleanupService {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZZ"
         formatter.timeZone = .current
-        print("   ⏱ \(title): \(formatter.string(from: date))")
+        Logger.log(
+            level: .info,
+            "   ⏱ \(title): \(formatter.string(from: date))",
+            shouldLogContext: false
+        )
     }
 }

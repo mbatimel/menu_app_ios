@@ -5,15 +5,30 @@ import SwiftUI
 @Observable
 final class MenuViewModel {
 
+    enum Route: Identifiable {
+        case createDish
+        case settings
+        case editDish(Dish)
+
+        var id: String {
+            switch self {
+            case .createDish:
+                "createDish"
+            case .settings:
+                "settings"
+            case .editDish(let dish):
+                "editDish_\(dish.id)"
+            }
+        }
+    }
+
     // MARK: - State
 
     var dishes: [Dish] = []
     var selectedDishes: Set<Int> = []
-    var editingDish: Dish?
+    var activeRoute: Route?
 
     var selectedTab = 0
-    var showingCreateDish = false
-    var showingSettings = false
 
     /// Используется ТОЛЬКО при первом входе
     var isLoading = false
@@ -22,10 +37,14 @@ final class MenuViewModel {
     var currentChef: String?
 
     private var autoRefreshTask: Task<Void, Never>?
+    private var isSilentReloadInFlight = false
+    private var needsSilentReload = false
+    private var queuedSilentReloadRequests = 0
+    private let feedAnimation: Animation = .easeInOut(duration: 0.25)
 
     var role: UserRole = .user {
         didSet {
-            UserDefaults.standard.set(role.rawValue, forKey: "userRole")
+            UserDefaults.standard.set(role.rawValue, forKey: UserDefaultsKeys.userRole)
             UserDefaults.standard.set(true, forKey: UserDefaultsKeys.hasRoleSelected)
         }
     }
@@ -68,16 +87,16 @@ final class MenuViewModel {
     private func setupSegmentedAppearance() {
         let appearance = UISegmentedControl.appearance()
 
-        appearance.selectedSegmentTintColor = UIColor(MenuColors.paper)
+        appearance.selectedSegmentTintColor = MenuColors.uiPaper
 
         appearance.setTitleTextAttributes([
-            .font: UIFont.systemFont(ofSize: 14, weight: .semibold),
-            .foregroundColor: UIColor(MenuColors.text)
+            .font: Typography.segmentedSelected,
+            .foregroundColor: MenuColors.uiText
         ], for: .selected)
 
         appearance.setTitleTextAttributes([
-            .font: UIFont.systemFont(ofSize: 14, weight: .medium),
-            .foregroundColor: UIColor(MenuColors.secondary)
+            .font: Typography.segmentedNormal,
+            .foregroundColor: MenuColors.uiSecondary
         ], for: .normal)
     }
 
@@ -86,10 +105,21 @@ final class MenuViewModel {
     func startAutoRefresh() {
         stopAutoRefresh()
 
-        autoRefreshTask = Task {
+        autoRefreshTask = Task { [weak self] in
+            guard let self else { return }
+
             while !Task.isCancelled {
-                try? await Task.sleep(for: .seconds(5))
-                await silentReloadAll()
+                do {
+                    try await Task.sleep(for: .seconds(5))
+                } catch {
+                    break
+                }
+
+                if Task.isCancelled {
+                    break
+                }
+
+                await silentReloadAll(source: "auto-refresh-timer")
             }
         }
     }
@@ -107,7 +137,9 @@ final class MenuViewModel {
 
         let result = await dishService.getDishes()
         if case .success(let response) = result {
-            dishes = response.data
+            withAnimation(feedAnimation) {
+                dishes = response.data
+            }
         }
 
         isLoading = false
@@ -116,50 +148,111 @@ final class MenuViewModel {
     func loadCurrentChef() async {
         let result = await chefService.current()
         if case .success(let chef) = result {
-            currentChef = chef.name
+            withAnimation(feedAnimation) {
+                currentChef = chef.name
+            }
             UserDefaults.standard.set(chef.name, forKey: "currentChef")
         }
     }
 
     // MARK: - Silent reload (блюда + повар)
 
-    func silentReloadAll() async {
-        async let dishesTask = dishService.getDishes()
-        async let chefTask = chefService.current()
-
-        let dishesResult = await dishesTask
-        let chefResult = await chefTask
-
-        if case .success(let response) = dishesResult {
-            dishes = response.data
+    func silentReloadAll(source: String = "unknown") async {
+        if isSilentReloadInFlight {
+            queuedSilentReloadRequests += 1
+            needsSilentReload = true
+            Logger.log(
+                level: .info,
+                "[SilentReload] Coalesced repeat request #\(queuedSilentReloadRequests) (source: \(source))"
+            )
+            return
         }
 
-        if case .success(let chef) = chefResult {
-            if currentChef != chef.name {
-                currentChef = chef.name
-                UserDefaults.standard.set(chef.name, forKey: "currentChef")
+        var pass = 1
+        repeat {
+            isSilentReloadInFlight = true
+            needsSilentReload = false
+
+            if pass > 1 {
+                Logger.log(
+                    level: .info,
+                    "[SilentReload] Starting repeated pass #\(pass)"
+                )
             }
-        }
+
+            async let dishesTask = dishService.getDishes()
+            async let chefTask = chefService.current()
+
+            let dishesResult = await dishesTask
+            let chefResult = await chefTask
+
+            if case .success(let response) = dishesResult {
+                withAnimation(feedAnimation) {
+                    dishes = response.data
+                }
+            }
+
+            if case .success(let chef) = chefResult {
+                if currentChef != chef.name {
+                    withAnimation(feedAnimation) {
+                        currentChef = chef.name
+                    }
+                    UserDefaults.standard.set(chef.name, forKey: "currentChef")
+                }
+            }
+
+            isSilentReloadInFlight = false
+
+            if needsSilentReload {
+                Logger.log(
+                    level: .info,
+                    "[SilentReload] Re-running due to \(queuedSilentReloadRequests) repeated request(s)"
+                )
+                queuedSilentReloadRequests = 0
+                pass += 1
+            }
+        } while needsSilentReload
+
+        queuedSilentReloadRequests = 0
     }
 
     // MARK: - Actions
+
+    func openCreateDish() {
+        guard role.permissions.canCreateDish else { return }
+        activeRoute = .createDish
+    }
+
+    func openSettings() {
+        guard role.permissions.canChangeChef else { return }
+        activeRoute = .settings
+    }
+
+    func openEditDish(_ dish: Dish) {
+        guard role.permissions.canEditDish else { return }
+        activeRoute = .editDish(dish)
+    }
 
     func toggleFavorite(dishId: Int) async {
         guard role.permissions.canToggleFavorite,
               let index = dishes.firstIndex(where: { $0.id == dishId }) else { return }
 
         let newValue = !dishes[index].favourite
-        dishes[index].favourite = newValue
+        withAnimation(feedAnimation) {
+            dishes[index].favourite = newValue
+        }
 
         let result = newValue
             ? await dishService.mark(request: MarkDishRequest(ids: [dishId]))
             : await dishService.unmark(request: UnMarkDishRequest(ids: [dishId]))
 
         if case .networkError = result {
-            dishes[index].favourite.toggle()
+            withAnimation(feedAnimation) {
+                dishes[index].favourite.toggle()
+            }
         }
 
-        await silentReloadAll()
+        await silentReloadAll(source: "toggle-favorite")
     }
 
     func deleteDish(id: Int) async {
@@ -167,10 +260,12 @@ final class MenuViewModel {
 
         let result = await dishService.delete(request: DeleteDishRequest(id: id))
         if case .success = result {
-            dishes.removeAll { $0.id == id }
+            withAnimation(feedAnimation) {
+                dishes.removeAll { $0.id == id }
+            }
         }
 
-        await silentReloadAll()
+        await silentReloadAll(source: "delete-dish")
     }
 
     func deleteAllDishes() async {
@@ -178,27 +273,12 @@ final class MenuViewModel {
 
         let result = await dishService.deleteAll()
         if case .success = result {
-            dishes = []
+            withAnimation(feedAnimation) {
+                dishes = []
+            }
         }
 
-        await silentReloadAll()
-    }
-
-    func updateDish(id: Int, newName: String, newCategory: DishCategory) async {
-        guard role.permissions.canEditDish else { return }
-
-        let request = UpdateDishRequest(
-            id: id,
-            text: newName,
-            category: newCategory
-        )
-
-        let result = await dishService.updateDish(request: request)
-        if case .success = result,
-           let index = dishes.firstIndex(where: { $0.id == id }) {
-            dishes[index].name = newName
-            dishes[index].category = newCategory
-        }
+        await silentReloadAll(source: "delete-all-dishes")
     }
 
     func applySecret(_ secret: String) {
@@ -214,9 +294,11 @@ final class MenuViewModel {
             guard let self else { return }
 
             Task {
-                self.dishes = []
-                self.currentChef = nil
-                await self.silentReloadAll()
+                withAnimation(self.feedAnimation) {
+                    self.dishes = []
+                    self.currentChef = nil
+                }
+                await self.silentReloadAll(source: "daily-cleanup-observer")
             }
         }
     }
