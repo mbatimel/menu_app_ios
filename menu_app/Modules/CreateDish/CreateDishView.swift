@@ -53,7 +53,6 @@ struct CreateDishView: View {
         .onAppear {
             isNameFieldFocused = true
         }
-        .dismissKeyboardOnTap()
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button("Отмена") {
