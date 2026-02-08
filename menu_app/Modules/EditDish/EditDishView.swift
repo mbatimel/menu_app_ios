@@ -3,8 +3,9 @@ import SwiftUI
 struct EditDishView: View {
 
     @State var viewModel: EditDishViewModel
-    let onSaved: () async -> Void
     @Environment(\.dismiss) var dismiss
+
+	let onSaved: () async -> Void
 
     init(
         viewModel: EditDishViewModel,
@@ -42,7 +43,7 @@ struct EditDishView: View {
                         .foregroundStyle(MenuColors.text)
 
                     Picker("", selection: $viewModel.selectedDish.category) {
-                        ForEach(DishCategory.allCases, id: \.self) { category in
+                        ForEach(DishCategory.allCases) { category in
                             Text(category.displayName)
                                 .font(Typography.fieldValue)
                                 .foregroundStyle(MenuColors.text)
@@ -104,4 +105,20 @@ struct EditDishView: View {
             }
         )
     }
+}
+
+#Preview {
+	NavigationStack {
+		EditDishView(
+			viewModel: EditDishViewModel(
+				selectedDish: .init(
+					id: 1,
+					name: "Паста Болоньеза",
+					category: .hotDishes,
+					favourite: true
+				)
+			),
+			onSaved: {}
+		)
+	}
 }

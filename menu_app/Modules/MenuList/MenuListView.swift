@@ -9,7 +9,7 @@ struct MenuListView: View {
             MenuColors.background
                 .ignoresSafeArea()
 
-            VStack(spacing: 0) {
+			VStack(spacing: .zero) {
 
                 Text("Меню")
                     .font(Typography.screenTitle)
@@ -82,9 +82,7 @@ struct MenuListView: View {
                 if viewModel.role.permissions.canDeleteDish {
                     Menu {
                         Button("Удалить все", role: .destructive) {
-                            Task {
-                                await viewModel.deleteAllDishes()
-                            }
+							viewModel.deleteAllDishes()
                         }
                     } label: {
                         Image(systemName: "ellipsis.circle")
@@ -195,17 +193,13 @@ struct MenuListView: View {
                 canEdit: viewModel.role.permissions.canEditDish,
                 canDelete: viewModel.role.permissions.canDeleteDish,
                 onToggleFavorite: {
-                    Task {
-                        await viewModel.toggleFavorite(dishId: dish.id)
-                    }
+					viewModel.toggleFavorite(dishId: dish.id)
                 },
                 onEdit: {
                     viewModel.openEditDish(dish)
                 },
                 onDelete: {
-                    Task {
-                        await viewModel.deleteDish(id: dish.id)
-                    }
+					viewModel.deleteDish(dishId: dish.id)
                 }
             )
         }

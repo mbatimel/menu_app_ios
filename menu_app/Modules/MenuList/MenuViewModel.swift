@@ -215,8 +215,32 @@ final class MenuViewModel {
 
         queuedSilentReloadRequests = 0
     }
+	
+	// MARK: - Public Methods
+	
+	func toggleFavorite(dishId: Int) {
+		Task {
+			await toggleFavoriteRequest(dishId: dishId)
+		}
+	}
+	
+	func deleteDish(dishId: Int) {
+		Task {
+			await deleteDishRequest(dishId: dishId)
+		}
+	}
+	
+	func deleteAllDishes() {
+		Task {
+			await deleteAllDishesRequest()
+		}
+	}
 
-    // MARK: - Actions
+	func applySecret(_ secret: String) {
+		self.role = roleFromSecret(secret)
+	}
+
+    // MARK: - Nav Actions
 
     func openCreateDish() {
         guard role.permissions.canCreateDish else { return }
@@ -233,58 +257,6 @@ final class MenuViewModel {
         activeRoute = .editDish(dish)
     }
 
-    func toggleFavorite(dishId: Int) async {
-        guard role.permissions.canToggleFavorite,
-              let index = dishes.firstIndex(where: { $0.id == dishId }) else { return }
-
-        let newValue = !dishes[index].favourite
-        withAnimation(feedAnimation) {
-            dishes[index].favourite = newValue
-        }
-
-        let result = newValue
-            ? await dishService.mark(request: MarkDishRequest(ids: [dishId]))
-            : await dishService.unmark(request: UnMarkDishRequest(ids: [dishId]))
-
-        if case .networkError = result {
-            withAnimation(feedAnimation) {
-                dishes[index].favourite.toggle()
-            }
-        }
-
-        await silentReloadAll(source: "toggle-favorite")
-    }
-
-    func deleteDish(id: Int) async {
-        guard role.permissions.canDeleteDish else { return }
-
-        let result = await dishService.delete(request: DeleteDishRequest(id: id))
-        if case .success = result {
-            withAnimation(feedAnimation) {
-                dishes.removeAll { $0.id == id }
-            }
-        }
-
-        await silentReloadAll(source: "delete-dish")
-    }
-
-    func deleteAllDishes() async {
-        guard role.permissions.canDeleteDish else { return }
-
-        let result = await dishService.deleteAll()
-        if case .success = result {
-            withAnimation(feedAnimation) {
-                dishes = []
-            }
-        }
-
-        await silentReloadAll(source: "delete-all-dishes")
-    }
-
-    func applySecret(_ secret: String) {
-        self.role = roleFromSecret(secret)
-    }
-    
     private func setupCleanupObserver() {
         NotificationCenter.default.addObserver(
             forName: .dailyCleanupDidFinish,
@@ -302,5 +274,55 @@ final class MenuViewModel {
             }
         }
     }
+	
+	// MARK: - Private Methods
+
+	private func toggleFavoriteRequest(dishId: Int) async {
+		guard role.permissions.canToggleFavorite,
+			  let index = dishes.firstIndex(where: { $0.id == dishId }) else { return }
+
+		let newValue = !dishes[index].favourite
+		withAnimation(feedAnimation) {
+			dishes[index].favourite = newValue
+		}
+
+		let result = newValue
+			? await dishService.mark(request: MarkDishRequest(ids: [dishId]))
+			: await dishService.unmark(request: UnMarkDishRequest(ids: [dishId]))
+
+		if case .networkError = result {
+			withAnimation(feedAnimation) {
+				dishes[index].favourite.toggle()
+			}
+		}
+
+		await silentReloadAll(source: "toggle-favorite")
+	}
+
+	private func deleteDishRequest(dishId: Int) async {
+		guard role.permissions.canDeleteDish else { return }
+
+		let result = await dishService.delete(request: DeleteDishRequest(id: dishId))
+		if case .success = result {
+			withAnimation(feedAnimation) {
+				dishes.removeAll { $0.id == dishId }
+			}
+		}
+
+		await silentReloadAll(source: "delete-dish")
+	}
+
+	private func deleteAllDishesRequest() async {
+		guard role.permissions.canDeleteDish else { return }
+
+		let result = await dishService.deleteAll()
+		if case .success = result {
+			withAnimation(feedAnimation) {
+				dishes = []
+			}
+		}
+
+		await silentReloadAll(source: "delete-all-dishes")
+	}
 
 }
