@@ -24,23 +24,27 @@ final class MenuViewModel {
 
     // MARK: - State
 
-    var dishes: [Dish] = []
+    var dishesState: Loading<[Dish]> = .loading
     var selectedDishes: Set<Int> = []
     var activeRoute: Route?
 
     var selectedTab = 0
 
-    /// Используется ТОЛЬКО при первом входе
-    var isLoading = false
-    var errorMessage: String?
-
     var currentChef: String?
+
+    var selectedDate: Date = Date()
+
+    var isToday: Bool {
+        Calendar.current.isDateInToday(selectedDate)
+    }
 
     private var autoRefreshTask: Task<Void, Never>?
     private var isSilentReloadInFlight = false
     private var needsSilentReload = false
     private var queuedSilentReloadRequests = 0
     private let feedAnimation: Animation = .easeInOut(duration: 0.25)
+
+    private var favoriteDebouncers: [Int: TaskDebouncer] = [:]
 
     var role: UserRole = .user {
         didSet {
@@ -54,12 +58,17 @@ final class MenuViewModel {
 
     // MARK: - Computed
 
+    var chefDisplayName: String {
+        guard let name = currentChef, !name.isEmpty else { return "не назначен" }
+        return name
+    }
+
     var groupedDishes: [DishCategory: [Dish]] {
-        Dictionary(grouping: dishes, by: { $0.category })
+        Dictionary(grouping: dishesState.value ?? [], by: { $0.category })
     }
 
     var favoriteDishes: [Dish] {
-        dishes.filter { $0.favourite }
+        (dishesState.value ?? []).filter { $0.favourite }
     }
 
     // MARK: - Init
@@ -100,26 +109,20 @@ final class MenuViewModel {
         ], for: .normal)
     }
 
-    // MARK: - Auto refresh (каждые 5 сек, ТИХО)
+    // MARK: - Auto refresh (каждые 5 сек, только для сегодня)
 
     func startAutoRefresh() {
         stopAutoRefresh()
-
         autoRefreshTask = Task { [weak self] in
             guard let self else { return }
-
             while !Task.isCancelled {
                 do {
                     try await Task.sleep(for: .seconds(5))
                 } catch {
                     break
                 }
-
-                if Task.isCancelled {
-                    break
-                }
-
-                await silentReloadAll(source: "auto-refresh-timer")
+                guard !Task.isCancelled, isToday else { continue }
+                await silentReloadAll()
             }
         }
     }
@@ -132,113 +135,111 @@ final class MenuViewModel {
     // MARK: - First load (с индикатором)
 
     func loadAllDishes() async {
-        isLoading = true
-        errorMessage = nil
-
-        let result = await dishService.getDishes()
-        if case .success(let response) = result {
+        dishesState = .loading
+        do {
+            let response = try await dishService.getDishes(date: formattedDate(selectedDate))
             withAnimation(feedAnimation) {
-                dishes = response.data
+                dishesState = .loaded(response.data)
+            }
+        } catch {
+            Logger.log(level: .error(error), "Error loading dishes")
+            withAnimation(feedAnimation) {
+                dishesState = .loaded([])
             }
         }
-
-        isLoading = false
     }
 
     func loadCurrentChef() async {
-        let result = await chefService.current()
-        if case .success(let chef) = result {
+        do {
+            let chef = try await chefService.current()
             withAnimation(feedAnimation) {
                 currentChef = chef.name
             }
             UserDefaults.standard.set(chef.name, forKey: "currentChef")
+        } catch {
+            Logger.log(level: .error(error), "Error loading chef")
         }
     }
 
-    // MARK: - Silent reload (блюда + повар)
+    // MARK: - Silent reload
 
-    func silentReloadAll(source: String = "unknown") async {
+    func silentReloadAll() async {
         if isSilentReloadInFlight {
             queuedSilentReloadRequests += 1
             needsSilentReload = true
-            Logger.log(
-                level: .info,
-                "[SilentReload] Coalesced repeat request #\(queuedSilentReloadRequests) (source: \(source))"
-            )
             return
         }
 
-        var pass = 1
         repeat {
             isSilentReloadInFlight = true
             needsSilentReload = false
 
-            if pass > 1 {
-                Logger.log(
-                    level: .info,
-                    "[SilentReload] Starting repeated pass #\(pass)"
-                )
-            }
-
-            async let dishesTask = dishService.getDishes()
+            async let dishesTask = dishService.getDishes(date: formattedDate(selectedDate))
             async let chefTask = chefService.current()
 
-            let dishesResult = await dishesTask
-            let chefResult = await chefTask
-
-            if case .success(let response) = dishesResult {
+            do {
+                let response = try await dishesTask
                 withAnimation(feedAnimation) {
-                    dishes = response.data
+                    dishesState = .loaded(response.data)
                 }
+            } catch {
+                Logger.log(level: .error(error), "Silent reload dishes error")
             }
 
-            if case .success(let chef) = chefResult {
+            do {
+                let chef = try await chefTask
                 if currentChef != chef.name {
                     withAnimation(feedAnimation) {
                         currentChef = chef.name
                     }
                     UserDefaults.standard.set(chef.name, forKey: "currentChef")
                 }
+            } catch {
+                Logger.log(level: .error(error), "Silent reload chef error")
             }
 
             isSilentReloadInFlight = false
 
             if needsSilentReload {
-                Logger.log(
-                    level: .info,
-                    "[SilentReload] Re-running due to \(queuedSilentReloadRequests) repeated request(s)"
-                )
                 queuedSilentReloadRequests = 0
-                pass += 1
             }
         } while needsSilentReload
 
         queuedSilentReloadRequests = 0
     }
-	
-	// MARK: - Public Methods
-	
-	func toggleFavorite(dishId: Int) {
-		Task {
-			await toggleFavoriteRequest(dishId: dishId)
-		}
-	}
-	
-	func deleteDish(dishId: Int) {
-		Task {
-			await deleteDishRequest(dishId: dishId)
-		}
-	}
-	
-	func deleteAllDishes() {
-		Task {
-			await deleteAllDishesRequest()
-		}
-	}
 
-	func applySecret(_ secret: String) {
-		self.role = roleFromSecret(secret)
-	}
+    // MARK: - Public Methods
+
+    func toggleFavorite(dishId: Int) {
+        guard role.permissions.canToggleFavorite,
+              case .loaded(var dishes) = dishesState,
+              let index = dishes.firstIndex(where: { $0.id == dishId }) else { return }
+
+        let newValue = !dishes[index].favourite
+        dishes[index].favourite = newValue
+        withAnimation(feedAnimation) {
+            dishesState = .loaded(dishes)
+        }
+
+        let d = debouncer(for: dishId)
+        Task {
+            await d.debounce { [weak self] in
+                await self?.sendToggleFavoriteRequest(dishId: dishId, newValue: newValue)
+            }
+        }
+    }
+
+    func deleteDish(dishId: Int) {
+        Task { await deleteDishRequest(dishId: dishId) }
+    }
+
+    func deleteAllDishes() {
+        Task { await deleteAllDishesRequest() }
+    }
+
+    func applySecret(_ secret: String) {
+        self.role = roleFromSecret(secret)
+    }
 
     // MARK: - Nav Actions
 
@@ -257,6 +258,20 @@ final class MenuViewModel {
         activeRoute = .editDish(dish)
     }
 
+    // MARK: - Private Helpers
+
+    private func debouncer(for dishId: Int) -> TaskDebouncer {
+        if let existing = favoriteDebouncers[dishId] { return existing }
+        let new = TaskDebouncer()
+        favoriteDebouncers[dishId] = new
+        return new
+    }
+
+    private func formattedDate(_ date: Date) -> String {
+        let c = Calendar.current.dateComponents([.year, .month, .day], from: date)
+        return String(format: "%04d-%02d-%02dT00:00:00Z", c.year!, c.month!, c.day!)
+    }
+
     private func setupCleanupObserver() {
         NotificationCenter.default.addObserver(
             forName: .dailyCleanupDidFinish,
@@ -264,65 +279,65 @@ final class MenuViewModel {
             queue: .main
         ) { [weak self] _ in
             guard let self else { return }
-
             Task {
                 withAnimation(self.feedAnimation) {
-                    self.dishes = []
+                    self.dishesState = .loaded([])
                     self.currentChef = nil
                 }
-                await self.silentReloadAll(source: "daily-cleanup-observer")
+                await self.silentReloadAll()
             }
         }
     }
-	
-	// MARK: - Private Methods
 
-	private func toggleFavoriteRequest(dishId: Int) async {
-		guard role.permissions.canToggleFavorite,
-			  let index = dishes.firstIndex(where: { $0.id == dishId }) else { return }
+    // MARK: - Private Requests
 
-		let newValue = !dishes[index].favourite
-		withAnimation(feedAnimation) {
-			dishes[index].favourite = newValue
-		}
+    private func sendToggleFavoriteRequest(dishId: Int, newValue: Bool) async {
+        do {
+            if newValue {
+                try await dishService.mark(request: MarkDishRequest(ids: [dishId]))
+            } else {
+                try await dishService.unmark(request: UnMarkDishRequest(ids: [dishId]))
+            }
+        } catch {
+            Logger.log(level: .error(error), "Error toggling favourite")
+            if case .loaded(var dishes) = dishesState,
+               let index = dishes.firstIndex(where: { $0.id == dishId }) {
+                dishes[index].favourite = !newValue
+                withAnimation(feedAnimation) {
+                    dishesState = .loaded(dishes)
+                }
+            }
+        }
+        await silentReloadAll()
+    }
 
-		let result = newValue
-			? await dishService.mark(request: MarkDishRequest(ids: [dishId]))
-			: await dishService.unmark(request: UnMarkDishRequest(ids: [dishId]))
+    private func deleteDishRequest(dishId: Int) async {
+        guard role.permissions.canDeleteDish else { return }
+        do {
+            try await dishService.delete(request: DeleteDishRequest(id: dishId))
+            if case .loaded(var dishes) = dishesState {
+                dishes.removeAll { $0.id == dishId }
+                withAnimation(feedAnimation) {
+                    dishesState = .loaded(dishes)
+                }
+            }
+        } catch {
+            Logger.log(level: .error(error), "Error deleting dish")
+        }
+        await silentReloadAll()
+    }
 
-		if case .networkError = result {
-			withAnimation(feedAnimation) {
-				dishes[index].favourite.toggle()
-			}
-		}
-
-		await silentReloadAll(source: "toggle-favorite")
-	}
-
-	private func deleteDishRequest(dishId: Int) async {
-		guard role.permissions.canDeleteDish else { return }
-
-		let result = await dishService.delete(request: DeleteDishRequest(id: dishId))
-		if case .success = result {
-			withAnimation(feedAnimation) {
-				dishes.removeAll { $0.id == dishId }
-			}
-		}
-
-		await silentReloadAll(source: "delete-dish")
-	}
-
-	private func deleteAllDishesRequest() async {
-		guard role.permissions.canDeleteDish else { return }
-
-		let result = await dishService.deleteAll()
-		if case .success = result {
-			withAnimation(feedAnimation) {
-				dishes = []
-			}
-		}
-
-		await silentReloadAll(source: "delete-all-dishes")
-	}
+    private func deleteAllDishesRequest() async {
+        guard role.permissions.canDeleteDish else { return }
+        do {
+            try await dishService.deleteAll()
+            withAnimation(feedAnimation) {
+                dishesState = .loaded([])
+            }
+        } catch {
+            Logger.log(level: .error(error), "Error deleting all dishes")
+        }
+        await silentReloadAll()
+    }
 
 }

@@ -14,9 +14,7 @@ final class SettingsViewModel {
 
     var hasChef: Bool {
         guard let currentChef else { return false }
-        return !currentChef.trimmingCharacters(
-            in: .whitespacesAndNewlines
-        ).isEmpty
+        return !currentChef.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
 
     init(
@@ -28,9 +26,11 @@ final class SettingsViewModel {
     }
 
     func loadCurrentChef() async {
-        let result = await chefService.current()
-        if case .success(let chef) = result {
+        do {
+            let chef = try await chefService.current()
             currentChef = chef.name
+        } catch {
+            Logger.log(level: .error(error), "Error loading chef")
         }
     }
 
@@ -47,15 +47,14 @@ final class SettingsViewModel {
         isProcessing = true
         defer { isProcessing = false }
 
-        let result = await chefService.create(request: CreateChefRequest(name: name))
-        switch result {
-        case .success:
+        do {
+            try await chefService.create(request: CreateChefRequest(name: name))
             currentChef = name
             chefName = ""
             errorMessage = nil
             return true
-        case .networkError(let error):
-            errorMessage = error
+        } catch {
+            errorMessage = error.localizedDescription
             return false
         }
     }
@@ -66,15 +65,13 @@ final class SettingsViewModel {
         isProcessing = true
         defer { isProcessing = false }
 
-        let result = await chefService.delete()
-
-        switch result {
-        case .success:
+        do {
+            try await chefService.delete()
             currentChef = nil
             errorMessage = nil
             return true
-        case .networkError(let error):
-            errorMessage = error
+        } catch {
+            errorMessage = error.localizedDescription
             return false
         }
     }

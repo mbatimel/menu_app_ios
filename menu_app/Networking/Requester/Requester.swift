@@ -2,11 +2,10 @@ import Foundation
 
 class Requester {
 
-    func sendRequest<T: Decodable>(endpoint: Endpoint, responseModel: T.Type) async -> Result<T> {
+    func sendRequest<T: Decodable>(endpoint: Endpoint, responseModel: T.Type) async throws -> T {
 
         guard let url = URL(string: API.baseURL + endpoint.path) else {
-            print("Invalid URL")
-            return .networkError("Invalid URL")
+            throw AppError.invalidURL
         }
 
         var request = URLRequest(url: url)
@@ -17,23 +16,28 @@ class Requester {
             configureRequest(&request, with: body, method: endpoint.method)
         }
 
-        do {
-            let (data, response) = try await URLSession.shared.data(for: request)
-            guard let httpResponse = response as? HTTPURLResponse else {
-                print("No response from server")
-                return .networkError("No response from server")
+        Logger.log(level: .info, "→ \(endpoint.method.rawValue) \(request.url?.absoluteString ?? "nil")")
+
+        let (data, response) = try await URLSession.shared.data(for: request)
+
+        guard let httpResponse = response as? HTTPURLResponse else {
+            throw AppError.network("No response from server")
+        }
+
+        switch httpResponse.statusCode {
+        case 200...299:
+            do {
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                return try decoder.decode(responseModel, from: data)
+            } catch {
+                throw AppError.decoding(error.localizedDescription)
             }
-
-            let decoder = JSONDecoder()
-			decoder.keyDecodingStrategy = .convertFromSnakeCase
-
-            return handleResponse(httpResponse, data: data, responseModel: responseModel, decoder: decoder)
-        } catch {
-            print("Network request failed: \(error.localizedDescription)")
-            return .networkError("Network request failed: \(error.localizedDescription)")
+        default:
+            throw AppError.network("Unexpected status code: \(httpResponse.statusCode)")
         }
     }
-    
+
     private func configureRequest(_ request: inout URLRequest, with body: Encodable, method: RequestMethod) {
         switch method {
         case .get:
@@ -51,23 +55,8 @@ class Requester {
                 request.addValue("application/json", forHTTPHeaderField: "Content-Type")
                 request.addValue("application/json", forHTTPHeaderField: "Accept")
             } catch {
-                print("Error encoding JSON:", error)
+                Logger.log(level: .error(error), "Error encoding request body")
             }
-        }
-    }
-    
-    private func handleResponse<T: Decodable>(_ httpResponse: HTTPURLResponse, data: Data, responseModel: T.Type, decoder: JSONDecoder) -> Result<T> {
-        switch httpResponse.statusCode {
-        case 200...299:
-            do {
-                let decodedResponse = try decoder.decode(responseModel, from: data)
-                return .success(decodedResponse)
-            } catch {
-                print("Failed to decode response: \(error.localizedDescription)")
-                return .networkError("Failed to decode response: \(error.localizedDescription)")
-            }
-        default:
-            return .networkError("Unexpected status code: \(httpResponse.statusCode)")
         }
     }
 }

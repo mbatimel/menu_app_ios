@@ -1,15 +1,15 @@
 import Foundation
 
 enum DishesEndpoint: Endpoint {
-	case getlist
-	case getFavoritesList
+	case getlist(date: String)
+	case getFavoritesList(date: String)
 	case create(request: CreateDishRequest)
 	case update(request: UpdateDishRequest)
-    case mark(request:MarkDishRequest)
+    case mark(request: MarkDishRequest)
 	case unmark(request: UnMarkDishRequest)
 	case deleteDish(request: DeleteDishRequest)
 	case deleteAll
-	
+
 	var path: String {
 		switch self {
 		case .getlist:
@@ -30,7 +30,7 @@ enum DishesEndpoint: Endpoint {
 			API.Dishes.deleteAll
 		}
 	}
-	
+
 	var method: RequestMethod {
 		switch self {
 		case .getlist, .getFavoritesList:
@@ -43,13 +43,17 @@ enum DishesEndpoint: Endpoint {
 			.put
 		}
 	}
-	
-	var header: [String : String]? {
+
+	var header: [String: String]? {
 		return nil
 	}
-	
+
 	var parameters: (any Encodable)? {
 		switch self {
+		case let .getlist(date):
+			GetDishesRequest(date: date)
+		case let .getFavoritesList(date):
+			GetDishesRequest(date: date)
 		case let .create(request):
 			request
 		case let .update(request):
@@ -64,5 +68,4 @@ enum DishesEndpoint: Endpoint {
 			nil
 		}
 	}
-	
 }
