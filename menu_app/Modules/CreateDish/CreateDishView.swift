@@ -6,6 +6,8 @@ struct CreateDishView: View {
 	@Environment(\.dismiss) var dismiss
 	@FocusState private var isNameFieldFocused: Bool
 
+	var onSaved: (() async -> Void)? = nil
+
 	var body: some View {
 		contentView
 			.navigationTitle("Новое блюдо")
@@ -25,8 +27,11 @@ struct CreateDishView: View {
 
 				ToolbarItem(placement: .navigationBarTrailing) {
 					Button("Создать") {
-						viewModel.createDish()
-						dismiss()
+						Task {
+							viewModel.createDish()
+							await onSaved?()
+							dismiss()
+						}
 					}
 					.disabled(viewModel.name.isEmpty)
 					.foregroundStyle(MenuColors.section)

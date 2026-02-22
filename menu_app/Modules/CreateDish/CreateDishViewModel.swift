@@ -3,39 +3,35 @@ import Foundation
 @Observable
 final class CreateDishViewModel {
 
-	var name: String = ""
-	var selectedCategory: DishCategory = .snacks
-	var errorMessage: String? = nil
+    var name: String = ""
+    var selectedCategory: DishCategory = .snacks
+    var errorMessage: String? = nil
 
-	private let dishService: DishesServiceProtocol
-    
+    private let dishService: DishesServiceProtocol
 
-	// MARK: - Init
+    // MARK: - Init
 
-	init(dishService: DishesServiceProtocol = DishesService()) {
-		self.dishService = dishService
-	}
+    init(dishService: DishesServiceProtocol = DishesService()) {
+        self.dishService = dishService
+    }
 
-	// MARK: - Public Methods
+    // MARK: - Public Methods
 
-	func createDish() {
-		Task {
-			await createDishRequest(name: name, catorgory: selectedCategory)
-		}
-	}
+    func createDish() {
+        Task {
+            await createDishRequest()
+        }
+    }
 
-	// MARK: - Private Methods
+    // MARK: - Private Methods
 
-    private func createDishRequest(name: String, catorgory: DishCategory) async {
-		let request = CreateDishRequest(dish: name, category: catorgory)
-		let result = await dishService.createDish(request: request)
-
-		switch result {
-		case .success:
-			Logger.log(level: .info, "Dish successfully created!")
-		case .networkError(let error):
-			errorMessage = error
-		}
-	}
+    private func createDishRequest() async {
+        do {
+            try await dishService.createDish(request: CreateDishRequest(dish: name, category: selectedCategory))
+            Logger.log(level: .info, "Dish successfully created!")
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+    }
 
 }

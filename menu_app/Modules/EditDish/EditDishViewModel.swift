@@ -36,14 +36,13 @@ final class EditDishViewModel {
             category: selectedDish.category
         )
 
-        let result = await dishService.updateDish(request: request)
-        switch result {
-        case .success:
+        do {
+            try await dishService.updateDish(request: request)
             selectedDish.name = name
             errorMessage = nil
             return true
-        case .networkError(let error):
-            errorMessage = error
+        } catch {
+            errorMessage = error.localizedDescription
             return false
         }
     }
