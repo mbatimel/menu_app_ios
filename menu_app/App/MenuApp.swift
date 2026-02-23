@@ -26,30 +26,27 @@ struct MenuApp: App {
         await cleanupService.checkAndPerformCleanupIfNeeded(
             source: source
         ) {
-            print("🚀 [Cleanup] perform() called")
+            Logger.log(level: .info, "Сalled")
 
-            async let dishes = DishesService().deleteAll()
-            async let chef = ChefService().delete()
+            async let dishesTask: Void = DishesService().deleteAll()
+            async let chefTask: Void = ChefService().delete()
 
-            let dishesResult = await dishes
-            let chefResult = await chef
+            var dishesSuccess = false
 
-            let dishesSuccess: Bool
-            switch dishesResult {
-            case .success:
-                print("🍽 Dishes deleted")
+            do {
+                try await dishesTask
+                Logger.log(level: .info, "🍽 Dishes deleted")
                 dishesSuccess = true
-            case .networkError:
-                print("❌ Dishes delete failed")
-                dishesSuccess = false
+            } catch {
+                Logger.log(level: .error(error), "Dishes delete failed")
             }
 
-            switch chefResult {
-            case .success:
-                print("👨‍🍳 Chef deleted")
+            do {
+                try await chefTask
+                Logger.log(level: .info, "Chef deleted")
                 UserDefaults.standard.removeObject(forKey: "currentChef")
-            case .networkError:
-                print("❌ Chef delete failed")
+            } catch {
+                Logger.log(level: .error(error), "Chef delete failed")
             }
 
             return dishesSuccess
